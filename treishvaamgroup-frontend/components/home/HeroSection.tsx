@@ -1,99 +1,91 @@
 'use client'
 
 import Link from 'next/link'
-import { FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight, FiTrendingUp, FiGlobe, FiActivity } from 'react-icons/fi'
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary opacity-10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent opacity-10 rounded-full blur-3xl"></div>
+    <section className="relative h-screen w-full overflow-hidden flex items-center">
+      {/* Background Layer - Deep Navy + Gradient */}
+      <div className="absolute inset-0 z-0 bg-corporate-900">
+        <div className="absolute inset-0 bg-gradient-to-r from-corporate-900 via-corporate-900/80 to-transparent z-10"></div>
+        {/* Placeholder for Video Background */}
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center animate-pulse-slow"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="animate-slide-up">
-            <div className="inline-block mb-6 px-4 py-2 bg-secondary/20 rounded-full border border-secondary/40">
-              <span className="text-secondary font-semibold text-sm">WELCOME TO EXCELLENCE</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Treishvaam Group
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-200 mb-4 font-light">
-              Driving Business Excellence Globally
-            </p>
-            
-            <p className="text-gray-300 text-lg mb-10 leading-relaxed max-w-lg">
-              A conglomerate dedicated to innovation, sustainability, and creating lasting value across multiple sectors. We partner with businesses to transform vision into reality.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/about"
-                className="bg-secondary hover:bg-secondary/90 text-primary-900 font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center group"
-              >
-                Explore Our Story
-                <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary-900 font-bold px-8 py-4 rounded-lg transition-all duration-300 flex items-center justify-center group"
-              >
-                Get in Touch
-                <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-600">
-              <div>
-                <div className="text-3xl font-bold text-secondary">25+</div>
-                <p className="text-gray-300 text-sm">Years of Excellence</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-secondary">45</div>
-                <p className="text-gray-300 text-sm">Global Offices</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-secondary">5K+</div>
-                <p className="text-gray-300 text-sm">Team Members</p>
-              </div>
-            </div>
+      {/* Main Content */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20">
+        <div className="max-w-3xl space-y-8">
+          
+          {/* Animated Badge */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm w-fit animate-fade-in-up">
+            <span className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></span>
+            <span className="text-xs font-bold tracking-[0.2em] text-white uppercase">
+              Building The Future
+            </span>
           </div>
 
-          {/* Right Content - Visual Element */}
-          <div className="hidden lg:block relative animate-fade-in">
-            <div className="relative w-full h-96 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-2xl overflow-hidden border border-secondary/30">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-secondary/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <div className="w-20 h-20 bg-secondary/50 rounded-full flex items-center justify-center">
-                      <span className="text-4xl">🚀</span>
-                    </div>
-                  </div>
-                  <p className="text-white font-bold text-xl">Innovation & Growth</p>
-                  <p className="text-gray-300 text-sm mt-2">Transforming industries</p>
-                </div>
-              </div>
-            </div>
+          {/* Headline */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] animate-fade-in-up delay-100">
+            Driving <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">Global Growth</span>
+          </h1>
+
+          {/* Subtext */}
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl font-light leading-relaxed animate-fade-in-up delay-200">
+            Treishvaam Group is a diversified conglomerate committed to excellence in 
+            Energy, Infrastructure, and Finance. We are architecting a sustainable tomorrow.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-up delay-300">
+            <Link 
+              href="/businesses" 
+              className="px-8 py-4 bg-gold-500 hover:bg-gold-600 text-corporate-900 font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 rounded-sm"
+            >
+              Explore Sectors <FiArrowRight />
+            </Link>
+            <Link 
+              href="/investors" 
+              className="px-8 py-4 border border-white text-white hover:bg-white hover:text-corporate-900 font-bold uppercase tracking-wider text-sm transition-all rounded-sm"
+            >
+              Investor Relations
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce">
-          <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+      {/* Bottom Stats Strip */}
+      <div className="absolute bottom-0 left-0 w-full bg-white/5 backdrop-blur-lg border-t border-white/10 z-20 hidden md:block">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-4 divide-x divide-white/10 text-white">
+            <StatItem label="Global Presence" value="12 Countries" icon={<FiGlobe />} />
+            <StatItem label="Group Revenue" value="$4.2B" icon={<FiTrendingUp />} />
+            <StatItem label="Employees" value="15,000+" icon={<FiActivity />} />
+            <div className="pl-6 flex items-center justify-between group cursor-pointer">
+              <div>
+                <p className="text-xs uppercase text-gray-400 tracking-wider">Latest News</p>
+                <p className="font-serif italic text-sm mt-1 truncate max-w-[200px] text-gold-400 group-hover:text-white transition-colors">
+                  Treishvaam announces new renewable energy initiative...
+                </p>
+              </div>
+              <FiArrowRight className="text-gold-500 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
+  )
+}
+
+function StatItem({ label, value, icon }: { label: string, value: string, icon: any }) {
+  return (
+    <div className="px-6 first:pl-0 flex items-center gap-4">
+      <div className="text-gold-500 text-2xl">{icon}</div>
+      <div>
+        <div className="text-xl font-bold font-serif">{value}</div>
+        <div className="text-xs uppercase tracking-wider text-gray-400">{label}</div>
+      </div>
+    </div>
   )
 }

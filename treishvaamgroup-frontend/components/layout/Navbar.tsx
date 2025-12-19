@@ -2,178 +2,84 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
+import { FiMenu, FiX, FiSearch, FiGlobe, FiChevronDown } from 'react-icons/fi'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const mainNavLinks = [
-    { href: '/', label: 'Home' },
-    { 
-      label: 'About', 
-      submenu: [
-        { href: '/about', label: 'About Us' },
-        { href: '/sustainability', label: 'Sustainability' },
-      ]
-    },
-    { href: '/businesses', label: 'Our Businesses' },
-    { 
-      label: 'Investors', 
-      submenu: [
-        { href: '/investors', label: 'Investor Relations' },
-        { href: '/newsroom', label: 'Newsroom' },
-      ]
-    },
-    { href: '/careers', label: 'Careers' },
-    { href: '/contact', label: 'Contact Us' },
+  const navLinks = [
+    { name: 'Our Group', href: '/about' },
+    { name: 'Businesses', href: '/businesses' },
+    { name: 'Sustainability', href: '/sustainability' },
+    { name: 'Investor Relations', href: '/investors' },
+    { name: 'Newsroom', href: '/newsroom' },
   ]
 
   return (
-    <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white shadow-lg'
-          : 'bg-white shadow-md'
+    <header 
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-white shadow-lg py-2' : 'bg-gradient-to-b from-black/50 to-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className="flex items-center group"
-          >
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-700 to-accent rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
-            <span className="ml-3 text-xl font-bold text-primary-900 hidden sm:block group-hover:text-accent transition-colors">
-              Treishvaam Group
-            </span>
-          </Link>
+      {/* Top Utility Bar */}
+      <div className={`hidden lg:flex justify-end container mx-auto px-6 mb-2 text-[10px] tracking-widest uppercase font-semibold transition-all duration-300 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-90 text-gray-200'}`}>
+        <div className="flex gap-6">
+          <Link href="/careers" className="hover:text-gold-400 transition-colors">Careers</Link>
+          <Link href="/contact" className="hover:text-gold-400 transition-colors">Contact</Link>
+          <span className="flex items-center gap-1 cursor-pointer hover:text-gold-400"><FiGlobe /> Global Site</span>
+        </div>
+      </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {mainNavLinks.map((link) => (
-              <div
-                key={link.label}
-                className="relative group"
-                onMouseEnter={() => setActiveDropdown(link.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link
-                  href={'href' in link ? link.href : '#'}
-                  className="px-4 py-2 text-text-primary font-medium hover:text-accent transition-colors flex items-center"
-                >
-                  {link.label}
-                  {'submenu' in link && (
-                    <FiChevronDown className="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" />
-                  )}
-                </Link>
+      <nav className="container mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="group relative z-50 flex items-center gap-3">
+           <div className={`w-10 h-10 flex items-center justify-center border transition-colors duration-300 ${isScrolled ? 'border-corporate-900 text-corporate-900' : 'border-white text-white'}`}>
+             <span className="font-serif font-bold text-2xl">T</span>
+           </div>
+           <div className="flex flex-col">
+             <span className={`text-lg font-serif font-bold tracking-tight leading-none ${isScrolled ? 'text-corporate-900' : 'text-white'}`}>
+               TREISHVAAM
+             </span>
+             <span className={`text-[0.5rem] uppercase tracking-[0.3em] ${isScrolled ? 'text-corporate-600' : 'text-gray-300'}`}>
+               Group of Companies
+             </span>
+           </div>
+        </Link>
 
-                {/* Dropdown Menu */}
-                {'submenu' in link && (
-                  <div className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top">
-                    {link.submenu.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-4 py-3 text-text-primary hover:text-accent hover:bg-light-bg transition-all first:rounded-t-lg last:rounded-b-lg"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Link
-              href="/contact"
-              className="bg-accent hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300 hover:shadow-lg"
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name} 
+              href={link.href}
+              className={`text-xs font-bold tracking-widest uppercase relative group py-2 transition-colors duration-300
+                ${isScrolled ? 'text-corporate-900 hover:text-gold-600' : 'text-white hover:text-gold-400'}
+              `}
             >
-              Get in Touch
+              {link.name}
             </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md text-text-primary hover:bg-light-bg transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <FiX className="w-6 h-6" />
-            ) : (
-              <FiMenu className="w-6 h-6" />
-            )}
+          ))}
+          
+          <button className={`ml-4 transition-colors ${isScrolled ? 'text-corporate-900' : 'text-white'}`}>
+            <FiSearch size={20} />
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden pb-4 animate-slide-down">
-            <div className="space-y-2">
-              {mainNavLinks.map((link) => (
-                <div key={link.label}>
-                  {'href' in link ? (
-                    <Link
-                      href={link.href}
-                      className="block px-4 py-2 text-text-primary hover:bg-light-bg rounded-md transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <>
-                      <button
-                        className="w-full text-left px-4 py-2 text-text-primary hover:bg-light-bg rounded-md transition-colors flex items-center justify-between"
-                        onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
-                      >
-                        {link.label}
-                        <FiChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
-                      </button>
-                      {activeDropdown === link.label && 'submenu' in link && (
-                        <div className="pl-4 space-y-2">
-                          {link.submenu.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="block px-4 py-2 text-text-secondary hover:text-accent transition-colors"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/contact"
-              className="block mt-4 bg-accent hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all text-center"
-              onClick={() => setIsOpen(false)}
-            >
-              Get in Touch
-            </Link>
-          </div>
-        )}
-      </div>
-    </nav>
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className={`lg:hidden relative z-50 ${isScrolled ? 'text-corporate-900' : 'text-white'}`}
+        >
+          {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
+      </nav>
+    </header>
   )
 }
