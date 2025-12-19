@@ -2,32 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 :root {
   --font-inter: 'Inter', sans-serif;
   --font-playfair: 'Playfair Display', serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  @apply bg-white text-slate-800 font-sans antialiased;
+  @apply bg-surface-50 text-corporate-900 font-sans antialiased;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
   @apply font-serif text-corporate-900;
 }
 
-.text-balance {
-  text-wrap: balance;
+/* Glass Card Effect - FIXED */
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-md border border-white/40;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* Defined directly to prevent build error */
 }
 
-/* Premium Button Base */
-.btn-primary {
-  @apply px-8 py-3 bg-corporate-900 text-white font-medium tracking-wide uppercase text-xs hover:bg-gold-500 transition-all duration-300 rounded-none;
+/* Premium Button */
+.btn-gold {
+  @apply relative overflow-hidden bg-corporate-900 text-white font-medium tracking-widest uppercase text-xs px-8 py-4 transition-all duration-300 hover:bg-gold-500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 0 20px rgba(180, 146, 90, 0.4); /* Gold Glow Effect */
 }

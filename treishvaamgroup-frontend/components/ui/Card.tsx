@@ -3,30 +3,17 @@ import React from 'react'
 interface CardProps {
   children: React.ReactNode
   className?: string
-  noPadding?: boolean
-  bordered?: boolean
-  hover?: boolean
-  clickable?: boolean
+  hoverEffect?: boolean
 }
 
-export default function Card({
-  children,
-  className = '',
-  noPadding = false,
-  bordered = true,
-  hover = false,
-  clickable = false,
-}: CardProps) {
-  const baseStyles = 'bg-white rounded-lg transition-all duration-300'
-  const paddingStyles = noPadding ? '' : 'p-6'
-  const borderStyles = bordered ? 'border border-slate-200' : ''
-  const shadowStyles = 'shadow-subtle'
-  const hoverStyles = hover ? 'hover:shadow-md hover:border-slate-300' : ''
-  const cursorStyles = clickable ? 'cursor-pointer' : ''
-
+export function Card({ children, className = '', hoverEffect = true }: CardProps) {
   return (
-    <div
-      className={`${baseStyles} ${paddingStyles} ${borderStyles} ${shadowStyles} ${hoverStyles} ${cursorStyles} ${className}`.trim()}
+    <div 
+      className={`
+        bg-white/80 backdrop-blur-md border border-white/50 shadow-glass rounded-sm p-6
+        ${hoverEffect ? 'transition-all duration-500 hover:shadow-glow hover:-translate-y-1 hover:border-gold-300' : ''}
+        ${className}
+      `}
     >
       {children}
     </div>

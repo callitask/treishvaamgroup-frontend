@@ -1,91 +1,88 @@
 'use client'
 
 import Link from 'next/link'
-import { FiArrowRight, FiTrendingUp, FiGlobe, FiActivity } from 'react-icons/fi'
+import { useEffect, useState } from 'react'
+import { FiArrowRight } from 'react-icons/fi'
 
 export default function HeroSection() {
+  const [offset, setOffset] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => setOffset(window.pageYOffset)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center">
-      {/* Background Layer - Deep Navy + Gradient */}
-      <div className="absolute inset-0 z-0 bg-corporate-900">
-        <div className="absolute inset-0 bg-gradient-to-r from-corporate-900 via-corporate-900/80 to-transparent z-10"></div>
-        {/* Placeholder for Video Background */}
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center animate-pulse-slow"></div>
+    <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden">
+      
+      {/* 1. Dynamic Background Image (Parallax Effect) */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{ transform: `translateY(${offset * 0.5}px)` }} // Parallax speed
+      >
+        {/* Replace with a high-res cityscape or abstract architectural image */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070')] bg-cover bg-center" />
+        
+        {/* The "White/Gold" Wash Overlay */}
+        <div className="absolute inset-0 bg-white/80 mix-blend-hard-light" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20">
-        <div className="max-w-3xl space-y-8">
-          
+      {/* 2. Floating Abstract Shapes (Animation) */}
+      <div className="absolute right-0 top-1/4 w-[600px] h-[600px] bg-gold-300/10 rounded-full blur-3xl animate-float -z-10" />
+      <div className="absolute right-20 bottom-20 w-64 h-64 bg-blue-100/20 rounded-full blur-2xl animate-pulse-slow -z-10" />
+
+      {/* 3. Content */}
+      <div className="container mx-auto px-6 relative z-10 pt-20">
+        <div className="max-w-5xl">
           {/* Animated Badge */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm w-fit animate-fade-in-up">
-            <span className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></span>
-            <span className="text-xs font-bold tracking-[0.2em] text-white uppercase">
-              Building The Future
+          <div className="inline-flex items-center gap-3 mb-8 animate-fade-in-up bg-white/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/40 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+            <span className="text-corporate-800 uppercase tracking-[0.2em] text-[10px] font-bold">
+              Global Enterprise Architecture
             </span>
           </div>
-
-          {/* Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] animate-fade-in-up delay-100">
-            Driving <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">Global Growth</span>
+          
+          <h1 className="text-6xl md:text-8xl font-serif text-corporate-900 leading-[1.05] mb-8 animate-fade-in-up [animation-delay:200ms] drop-shadow-sm">
+            Building the <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-gold-300 animate-text-shimmer">
+              Essentials of Tomorrow
+            </span>
           </h1>
-
-          {/* Subtext */}
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl font-light leading-relaxed animate-fade-in-up delay-200">
-            Treishvaam Group is a diversified conglomerate committed to excellence in 
-            Energy, Infrastructure, and Finance. We are architecting a sustainable tomorrow.
+          
+          <p className="text-xl md:text-2xl text-corporate-600 max-w-2xl mb-12 font-light leading-relaxed animate-fade-in-up [animation-delay:400ms]">
+            Treishvaam Group identifies critical global gaps and builds specialized ecosystems in <span className="font-medium text-corporate-900">Finance, Nutrition, and Workforce</span> to fill them.
           </p>
-
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-up delay-300">
-            <Link 
-              href="/businesses" 
-              className="px-8 py-4 bg-gold-500 hover:bg-gold-600 text-corporate-900 font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 rounded-sm"
-            >
-              Explore Sectors <FiArrowRight />
+          
+          {/* Buttons with Hover Effects */}
+          <div className="flex flex-wrap gap-4 animate-fade-in-up [animation-delay:600ms]">
+            <Link href="/businesses" className="group relative overflow-hidden bg-corporate-900 text-white px-10 py-5 font-bold uppercase tracking-widest text-xs transition-all hover:shadow-2xl hover:-translate-y-1">
+              <span className="relative z-10 flex items-center gap-2">Explore Verticals <FiArrowRight /></span>
+              <div className="absolute inset-0 bg-gold-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
             </Link>
-            <Link 
-              href="/investors" 
-              className="px-8 py-4 border border-white text-white hover:bg-white hover:text-corporate-900 font-bold uppercase tracking-wider text-sm transition-all rounded-sm"
-            >
-              Investor Relations
+            
+            <Link href="/about" className="group bg-white/50 backdrop-blur-sm border border-corporate-200 text-corporate-900 px-10 py-5 font-bold uppercase tracking-widest text-xs transition-all hover:bg-white hover:shadow-lg hover:-translate-y-1 hover:border-gold-400">
+              Our Vision
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Bottom Stats Strip */}
-      <div className="absolute bottom-0 left-0 w-full bg-white/5 backdrop-blur-lg border-t border-white/10 z-20 hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-4 divide-x divide-white/10 text-white">
-            <StatItem label="Global Presence" value="12 Countries" icon={<FiGlobe />} />
-            <StatItem label="Group Revenue" value="$4.2B" icon={<FiTrendingUp />} />
-            <StatItem label="Employees" value="15,000+" icon={<FiActivity />} />
-            <div className="pl-6 flex items-center justify-between group cursor-pointer">
-              <div>
-                <p className="text-xs uppercase text-gray-400 tracking-wider">Latest News</p>
-                <p className="font-serif italic text-sm mt-1 truncate max-w-[200px] text-gold-400 group-hover:text-white transition-colors">
-                  Treishvaam announces new renewable energy initiative...
-                </p>
-              </div>
-              <FiArrowRight className="text-gold-500 group-hover:translate-x-1 transition-transform" />
-            </div>
+      {/* 4. Bottom Glass Ticker */}
+      <div className="absolute bottom-0 w-full border-t border-white/20 bg-white/60 backdrop-blur-md z-20">
+        <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-corporate-900">
+          <div className="flex gap-12 text-sm font-medium">
+             <span><span className="text-gold-600 font-serif italic mr-2">Latest:</span> Solar Dehydration Plant initialization in Phase 1.</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-[10px] uppercase tracking-widest text-corporate-500 font-bold">
+            <span>Mumbai</span>
+            <span>Dubai</span>
+            <span>London</span>
+            <span>Singapore</span>
           </div>
         </div>
       </div>
     </section>
-  )
-}
-
-function StatItem({ label, value, icon }: { label: string, value: string, icon: any }) {
-  return (
-    <div className="px-6 first:pl-0 flex items-center gap-4">
-      <div className="text-gold-500 text-2xl">{icon}</div>
-      <div>
-        <div className="text-xl font-bold font-serif">{value}</div>
-        <div className="text-xs uppercase tracking-wider text-gray-400">{label}</div>
-      </div>
-    </div>
   )
 }

@@ -1,194 +1,78 @@
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import { Section } from '@/components/ui'
+import HeroSection from '@/components/home/HeroSection'
 import Link from 'next/link'
-import { FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight, FiTrendingUp, FiSun, FiUsers } from 'react-icons/fi'
 
-export const metadata = {
-  title: 'About Us - Treishvaam Group',
-  description: 'Learn about Treishvaam Group\'s history, mission, vision, and leadership.',
-}
-
-export default function AboutPage() {
-  const timeline = [
-    {
-      year: '1998',
-      title: 'Founded',
-      description: 'Treishvaam Group established with a vision to create a diversified business conglomerate.',
-    },
-    {
-      year: '2005',
-      title: 'Expansion',
-      description: 'Entered energy and infrastructure sectors, doubling our market presence.',
-    },
-    {
-      year: '2012',
-      title: 'Global Reach',
-      description: 'Expanded operations to 50+ countries across Asia, Europe, and Africa.',
-    },
-    {
-      year: '2018',
-      title: 'Sustainability Focus',
-      description: 'Committed to net-zero emissions and launched major ESG initiatives.',
-    },
-    {
-      year: '2023',
-      title: 'Digital Transformation',
-      description: 'Launched group-wide technology modernization and innovation programs.',
-    },
-    {
-      year: '2024',
-      title: 'Future Ready',
-      description: 'Positioned as a leader in sustainable and future-ready conglomerate.',
-    },
-  ]
-
-  const leaders = [
-    { name: 'Rajesh Kumar', title: 'Chairman & CEO', image: '🧑‍💼' },
-    { name: 'Priya Sharma', title: 'Vice Chairman', image: '👩‍💼' },
-    { name: 'Amit Patel', title: 'Chief Financial Officer', image: '🧑‍💼' },
-    { name: 'Neha Singh', title: 'Chief Operating Officer', image: '👩‍💼' },
-    { name: 'Vikram Reddy', title: 'Chief Technology Officer', image: '🧑‍💼' },
-    { name: 'Anjali Dutta', title: 'Chief Sustainability Officer', image: '👩‍💼' },
-  ]
-
+export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main className="pt-16 sm:pt-26">
-        {/* Hero */}
-        <Section bgColor="corporate" spacingY="lg" fullBleed>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="font-serif text-5xl md:text-6xl font-bold text-white mb-6">
-              Our Story
-            </h1>
-            <p className="text-xl text-slate-200 max-w-3xl font-light">
-              From humble beginnings in 1998 to becoming a global conglomerate spanning multiple sectors,
-              Treishvaam Group's journey is one of vision, resilience, and sustainable growth.
+    <main className="bg-white selection:bg-gold-100">
+      <HeroSection />
+
+      {/* The Strategic Vision */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-surface-100 -skew-x-12 opacity-50 -z-10" />
+        
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl">
+            <span className="text-gold-500 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">The Treishvaam Ecosystem</span>
+            <h2 className="text-5xl md:text-6xl font-serif text-corporate-900 mb-8 leading-tight">
+              Empowering the <br/> <span className="italic text-gold-500">Essentials of Tomorrow.</span>
+            </h2>
+            <p className="text-xl text-corporate-500 font-light leading-relaxed mb-12">
+              We identify critical gaps in the global economy and build digital-first enterprises to fill them. From wealth management to sustainable nutrition and workforce scaling, Treishvaam is architecting the future.
             </p>
           </div>
-        </Section>
 
-        {/* Timeline */}
-        <Section spacingY="lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-16">
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-corporate-900 mb-4">
-                Our Journey
-              </h2>
-              <p className="text-lg text-slate-600 font-light">
-                Key milestones in our growth and evolution.
-              </p>
-            </div>
+          {/* The 3 Real Verticals */}
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            
+            {/* 1. Finance */}
+            <VerticalCard 
+              icon={<FiTrendingUp />}
+              title="Treishvaam Finance"
+              desc="Digital-first wealth management and strategic capital solutions."
+              status="LIVE"
+              link="https://treishfin.treishvaamgroup.com"
+            />
 
-            {/* Timeline */}
-            <div className="relative">
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-heritage-500 via-heritage-400 to-slate-200 md:translate-x-[-1px]"></div>
+            {/* 2. Agro */}
+            <VerticalCard 
+              icon={<FiSun />}
+              title="Treishvaam Agro"
+              desc="Solar-dried, zero-waste nutritional powders for the global market."
+              status="MANUFACTURING"
+              link="/businesses"
+            />
 
-              <div className="space-y-12 md:space-y-16">
-                {timeline.map((item, idx) => (
-                  <div key={idx} className={`relative flex gap-8 md:gap-0 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                    {/* Timeline Dot */}
-                    <div className="flex-shrink-0 relative z-10 w-16 h-16 md:w-20 md:h-20 bg-white border-4 border-heritage-500 rounded-full flex items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
-                      <span className="text-lg font-serif font-bold text-heritage-600">{item.year}</span>
-                    </div>
+            {/* 3. THM (Hire Marketplace) */}
+            <VerticalCard 
+              icon={<FiUsers />}
+              title="Hire Marketplace (THM)"
+              desc="The direct-access platform for hiring entire high-performance teams."
+              status="BETA"
+              link="/businesses"
+            />
 
-                    {/* Content */}
-                    <div className="md:w-1/2 flex flex-col justify-center pl-0 md:pl-12">
-                      <h3 className="font-serif text-2xl font-bold text-corporate-900 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-600 font-light leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
-        </Section>
+        </div>
+      </section>
+    </main>
+  )
+}
 
-        {/* Vision & Mission */}
-        <Section bgColor="slate" spacingY="lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Mission */}
-              <div className="bg-white rounded-lg border border-slate-200 p-12">
-                <h3 className="font-serif text-3xl font-bold text-corporate-900 mb-6">Our Mission</h3>
-                <p className="text-lg text-slate-700 font-light leading-relaxed">
-                  To create sustainable value for all stakeholders through operational excellence,
-                  innovation, and responsible business practices across our diverse portfolio of businesses.
-                </p>
-              </div>
-
-              {/* Vision */}
-              <div className="bg-white rounded-lg border border-slate-200 p-12">
-                <h3 className="font-serif text-3xl font-bold text-corporate-900 mb-6">Our Vision</h3>
-                <p className="text-lg text-slate-700 font-light leading-relaxed">
-                  To be recognized as a global conglomerate leading in sustainability, innovation,
-                  and stakeholder value creation, while making a positive impact on society and the environment.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        {/* Leadership */}
-        <Section spacingY="lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-16">
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-corporate-900 mb-4">
-                Our Leadership
-              </h2>
-              <p className="text-lg text-slate-600 font-light">
-                Experienced visionaries guiding Treishvaam Group's strategic direction.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {leaders.map((leader, idx) => (
-                <div key={idx} className="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
-                  <div className="bg-gradient-to-br from-corporate-100 to-slate-100 h-48 flex items-center justify-center text-6xl">
-                    {leader.image}
-                  </div>
-                  <div className="p-8">
-                    <h4 className="font-serif text-xl font-bold text-corporate-900 mb-2">
-                      {leader.name}
-                    </h4>
-                    <p className="text-heritage-600 font-semibold text-sm">
-                      {leader.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Section>
-
-        {/* Governance */}
-        <Section bgColor="slate" spacingY="lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-corporate-900 mb-6">
-                Corporate Governance
-              </h2>
-              <p className="text-lg text-slate-700 font-light mb-8">
-                We are committed to the highest standards of corporate governance, transparency,
-                and ethical business practices.
-              </p>
-              <Link
-                href="/about/governance"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-corporate-800 hover:bg-corporate-900 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg group"
-              >
-                View Governance Details
-                <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </Section>
-      </main>
-      <Footer />
-    </>
+function VerticalCard({ icon, title, desc, status, link }: any) {
+  return (
+    <Link href={link} className="group bg-surface-50 p-10 border border-transparent hover:border-gold-300 hover:shadow-glow transition-all duration-500 relative overflow-hidden">
+      <div className="absolute top-4 right-4">
+        <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm ${status === 'LIVE' ? 'bg-green-100 text-green-700' : 'bg-gold-100 text-gold-700'}`}>
+          {status}
+        </span>
+      </div>
+      <div className="text-3xl text-corporate-900 mb-6 group-hover:text-gold-500 transition-colors">{icon}</div>
+      <h3 className="text-2xl font-serif mb-3">{title}</h3>
+      <p className="text-corporate-500 text-sm leading-relaxed mb-8">{desc}</p>
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-corporate-900 group-hover:text-gold-500 transition-colors">
+        Explore <FiArrowRight />
+      </div>
+    </Link>
   )
 }
