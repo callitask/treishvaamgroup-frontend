@@ -1,0 +1,23 @@
+{
+  "name": "treishvaam-group",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Treishvaam Group - A Next.js powered website",
+  "scripts": {
+    "dev": "cd treishvaamgroup-frontend && npm run dev",
+    "build": "cd treishvaamgroup-frontend && npm run build",
+    "start": "cd treishvaamgroup-frontend && npm run start",
+    "lint": "cd treishvaamgroup-frontend && npm run lint"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "next": "^15.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19",
+    "postcss": "^8.5.6",
+    "autoprefixer": "^10.4.21",
+    "typescript": "^5.0.0"
+  }
+}
