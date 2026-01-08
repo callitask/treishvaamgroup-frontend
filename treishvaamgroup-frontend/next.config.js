@@ -3,10 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
-  outputFileTracingRoot: __dirname,
+  // Cloudflare Pages requires unoptimized images unless you use a paid loader
   images: {
-    domains: [],
+    domains: ['treishfin.treishvaamgroup.com', 'treishvaamgroup.com'],
     formats: ['image/avif', 'image/webp'],
+    unoptimized: true,
   },
   headers: async () => {
     return [
@@ -25,6 +26,14 @@ const nextConfig = {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN'
           },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          }
         ],
       },
     ]
