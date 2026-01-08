@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-import './globals.css' // <--- CRITICAL: This loads Tailwind
+import './globals.css'
 import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer' // We will assume you have a footer or can comment this out
+import Footer from '@/components/layout/Footer'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
 const inter = Inter({ 
@@ -28,14 +28,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={\\ \\}>
       <head>
         <GoogleAdSense />
       </head>
       <body className="font-sans antialiased bg-white text-slate-800">
         <Navbar />
         {children}
-        {/* If you don't have a Footer component yet, verify this line or remove it */}
         {/* <Footer /> */} 
       </body>
     </html>
