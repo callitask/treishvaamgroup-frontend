@@ -5,7 +5,7 @@ const nextConfig = {
   poweredByHeader: false,
   // Cloudflare Pages requires unoptimized images unless you use a paid loader
   images: {
-    domains: ['treishfin.treishvaamgroup.com', 'treishvaamgroup.com'],
+    domains: ['treishfin.treishvaamgroup.com', 'treishvaamgroup.com', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
     unoptimized: true,
   },
