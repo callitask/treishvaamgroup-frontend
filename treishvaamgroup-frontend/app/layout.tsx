@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css' // <--- CRITICAL: This loads Tailwind
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer' // We will assume you have a footer or can comment this out
+import GoogleAdSense from '@/components/GoogleAdSense'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -28,6 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <GoogleAdSense />
+      </head>
       <body className="font-sans antialiased bg-white text-slate-800">
         <Navbar />
         {children}
