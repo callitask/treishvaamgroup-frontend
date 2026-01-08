@@ -10,7 +10,7 @@ const GoogleAdSense = () => {
   return (
     <Script
       async
-      src={\https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=\8420\}
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pId}`}
       crossOrigin="anonymous"
       strategy="afterInteractive"
     />
