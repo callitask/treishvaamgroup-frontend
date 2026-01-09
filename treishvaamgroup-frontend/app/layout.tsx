@@ -1,25 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
-import Navbar from '@/components/layout/Navbar'
+
+// 1. Import your Navbar and Footer here
+import Navbar from '@/components/layout/Navbar' 
 import Footer from '@/components/layout/Footer'
-import GoogleAdSense from '@/components/GoogleAdSense'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Treishvaam Group | Global Business Excellence',
-  description: 'A diversified multinational conglomerate leading in Energy, Infrastructure, and Finance.',
+  title: 'Treishvaam Group',
+  description: 'Empowering the Essentials of Tomorrow',
 }
 
 export default function RootLayout({
@@ -28,14 +20,36 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={\\ \\}>
+    <html lang="en" className={inter.className}>
       <head>
-        <GoogleAdSense />
+        {/* Keep any specific head tags here */}
       </head>
-      <body className="font-sans antialiased bg-white text-slate-800">
+      <body className="flex flex-col min-h-screen">
+        
+        {/* 2. Place Navbar at the top */}
         <Navbar />
-        {children}
-        {/* <Footer /> */} 
+
+        {/* 3. Main content area */}
+        <div className="flex-grow">
+          {children}
+        </div>
+
+        {/* 4. Place Footer at the bottom */}
+        <Footer />
+
+        {/* Google Analytics Script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J1X48J18M4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-J1X48J18M4');
+          `}
+        </Script>
       </body>
     </html>
   )
