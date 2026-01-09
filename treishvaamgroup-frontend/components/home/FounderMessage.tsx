@@ -20,23 +20,21 @@ export default function FounderMessage() {
     "description": "Visionary entrepreneur and architect of the Treishvaam Group ecosystem, focusing on finance, agriculture, and human capital.",
     "image": "https://treishvaamgroup.com/amitsagar-kandpal-photo.png",
     "sameAs": [
-      "https://www.linkedin.com/in/amitsagar-kandpal",
-      "https://twitter.com/amitsagark" 
+      "https://www.linkedin.com/in/amitsagar-kandpal", // UPDATE THIS WITH REAL LINK
+      "https://twitter.com/amitsagark" // UPDATE THIS WITH REAL LINK
     ]
   }
 
   // --- ANIMATION ENGINE (Intersection Observer) ---
-  // This detects when the section is visible to trigger the "Reveal"
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Trigger animation when 20% of the section is visible
         if (entry.isIntersecting) {
           setIsVisible(true)
-          observer.disconnect() // Run only once for permanence
+          observer.disconnect()
         }
       },
       { threshold: 0.2 }
@@ -46,12 +44,11 @@ export default function FounderMessage() {
     return () => observer.disconnect()
   }, [])
 
-  // Helper class to manage staggered delays
-  // opacity-0 by default, then animate-fade-in-up when visible
-  const getAnimClass = (delay: string) => 
+  // Helper class: Transitions from Hidden (opacity-0, moved down) to Visible (opacity-100, original position)
+  const getRevealClass = (delay: string) => 
     isVisible 
-      ? `opacity-0 animate-fade-in-up ${delay}` // Apply animation with delay
-      : 'opacity-0 translate-y-10' // Hidden state
+      ? `opacity-100 translate-y-0 transition-all duration-1000 ease-out ${delay}` 
+      : 'opacity-0 translate-y-10'
 
   return (
     <section 
@@ -72,8 +69,8 @@ export default function FounderMessage() {
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
-          {/* 1. VISUAL IDENTITY (Animates First) */}
-          <div className={`w-full lg:w-5/12 flex justify-center lg:justify-end transition-all duration-1000 ${getAnimClass('')}`}>
+          {/* 1. VISUAL IDENTITY */}
+          <div className={`w-full lg:w-5/12 flex justify-center lg:justify-end ${getRevealClass('')}`}>
             <div className="relative w-72 h-80 md:w-80 md:h-96 group">
               
               {/* Image Container */}
@@ -101,11 +98,11 @@ export default function FounderMessage() {
             </div>
           </div>
 
-          {/* 2. PHILOSOPHICAL NARRATIVE (Animates Second) */}
+          {/* 2. PHILOSOPHICAL NARRATIVE */}
           <div className="w-full lg:w-7/12 text-center lg:text-left">
             
             {/* Tagline */}
-            <div className={`inline-flex items-center gap-2 mb-6 ${getAnimClass('[animation-delay:200ms]')}`}>
+            <div className={`inline-flex items-center gap-2 mb-6 ${getRevealClass('delay-200')}`}>
                <span className="w-8 h-[1px] bg-gold-600"></span>
                <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Chairman's Message</span>
             </div>
@@ -113,14 +110,14 @@ export default function FounderMessage() {
             {/* Headline */}
             <h2 
               id="founder-vision" 
-              className={`text-3xl md:text-5xl font-serif text-corporate-900 mb-8 leading-[1.2] ${getAnimClass('[animation-delay:400ms]')}`}
+              className={`text-3xl md:text-5xl font-serif text-corporate-900 mb-8 leading-[1.2] ${getRevealClass('delay-300')}`}
             >
               Architecting the <br/>
               <span className="italic text-gold-600">Substrates of Permanence.</span>
             </h2>
 
             {/* Content Body */}
-            <div className={`prose prose-lg text-corporate-600 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 ${getAnimClass('[animation-delay:600ms]')}`}>
+            <div className={`prose prose-lg text-corporate-600 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 ${getRevealClass('delay-500')}`}>
               <p className="mb-6">
                 <FaQuoteLeft className="inline-block text-gold-300 text-2xl mr-3 -mt-3" />
                 At Treishvaam Group, we are not merely building companies; we are engineering the structural necessities of a resilient future. My philosophy is rooted in a simple conviction: true value lies at the intersection of <strong className="text-corporate-900 font-medium">digital efficiency</strong> and <strong className="text-corporate-900 font-medium">tangible sovereignty</strong>.
@@ -131,7 +128,7 @@ export default function FounderMessage() {
             </div>
 
             {/* Signature Stats Footer */}
-            <div className={`flex flex-col md:flex-row items-center lg:justify-start justify-center gap-8 mt-10 border-t border-gray-100 pt-8 ${getAnimClass('[animation-delay:800ms]')}`}>
+            <div className={`flex flex-col md:flex-row items-center lg:justify-start justify-center gap-8 mt-10 border-t border-gray-100 pt-8 ${getRevealClass('delay-700')}`}>
               <div className="flex items-center gap-4">
                  <div className="text-4xl font-serif text-gold-500">3</div>
                  <div className="text-xs text-gray-500 uppercase tracking-wide font-medium text-left">
