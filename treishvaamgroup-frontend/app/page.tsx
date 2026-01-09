@@ -1,6 +1,6 @@
 import HeroSection from '@/components/home/HeroSection'
 import Link from 'next/link'
-import { FiArrowRight, FiTrendingUp, FiSun, FiUsers, FiGlobe, FiLayers, FiCpu, FiBarChart2, FiShield, FiZap, FiBox } from 'react-icons/fi'
+import { FiArrowRight, FiTrendingUp, FiSun, FiUsers, FiGlobe, FiLayers, FiCpu, FiShield, FiZap, FiBox, FiCheckCircle, FiDatabase, FiLock, FiHexagon, FiBriefcase, FiAnchor, FiActivity } from 'react-icons/fi'
 
 export default function Home() {
   return (
@@ -8,18 +8,18 @@ export default function Home() {
       <HeroSection />
 
       {/* =========================================================================
-          SECTION 1: THE ECOSYSTEM (DENSIFIED MODERN ISOMETRIC STACK)
+          SECTION 1: THE ECOSYSTEM (BUSINESS-SPECIFIC VISUALIZATION)
           ========================================================================= */}
       <section className="py-28 relative bg-gray-50/50 overflow-hidden border-b border-gray-100">
         
-        {/* Background: Mesh Gradient Blobs (Subtle) - KEPT */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-100/30 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gray-200/40 rounded-full blur-[80px] -z-10"></div>
+        {/* Background: Mesh Gradient Blobs */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gold-100/30 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gray-200/40 rounded-full blur-[90px] -z-10"></div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
             
-            {/* LEFT COLUMN: Text Content (KEPT) */}
+            {/* LEFT COLUMN: Text Content */}
             <div className="max-w-xl">
               <div className="flex items-center gap-3 mb-6">
                 <span className="h-[2px] w-8 bg-gold-600"></span>
@@ -45,81 +45,152 @@ export default function Home() {
             </div>
 
             {/* RIGHT COLUMN: The Densified Isometric Visualization */}
-            <div className="relative h-[600px] w-full flex items-center justify-center lg:justify-end perspective-[2000px]">
+            <div className="relative h-[700px] w-full flex items-center justify-center lg:justify-end perspective-[2000px]">
                
-               {/* --- NEW BACKGROUND INFRASTRUCTURE ELEMENTS (SUBTLE & BLURRED) --- */}
+               {/* --- PERIPHERAL ELEMENTS (BUSINESS VERTICALS) --- */}
                
-               {/* Abstract Cube 1 (Top Left - Gray Wireframe) */}
-               <div className="absolute top-20 left-10 w-32 h-32 border border-gray-300/40 rounded-xl transform rotate-x-[60deg] rotate-z-[30deg] animate-[spin_60s_linear_infinite] blur-[2px] -z-10 opacity-60">
-                  <div className="absolute inset-4 border border-gray-300/20 rounded-lg"></div>
+               {/* 1. Global Operations Card (Left) */}
+               <div className="absolute top-1/3 -left-12 w-40 px-4 py-3 bg-white/95 backdrop-blur-md border border-gray-100 rounded-lg shadow-xl transform rotate-y-12 rotate-z-[-5deg] animate-float z-20 flex flex-col gap-2">
+                  <div className="flex items-center justify-between border-b border-gray-50 pb-1">
+                     <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Operations</span>
+                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                     <div className="p-1.5 bg-gold-50 rounded-md">
+                        <FiGlobe className="text-gold-600 text-lg" />
+                     </div>
+                     <div>
+                        <div className="text-xs font-serif font-bold text-gray-900 leading-none mb-0.5">Global Reach</div>
+                        <div className="text-[8px] text-gray-500 font-medium">Expansion Active</div>
+                     </div>
+                  </div>
                </div>
-                {/* Abstract Cube 2 (Bottom Right - Gold Wireframe) */}
-               <div className="absolute bottom-32 right-0 w-40 h-40 border border-gold-300/30 rounded-xl transform rotate-x-[60deg] rotate-z-[-20deg] animate-[spin_80s_linear_infinite_reverse] blur-[3px] -z-10 opacity-50">
-                  <div className="absolute inset-6 border border-gold-300/10 rounded-lg"></div>
+
+               {/* 2. TALENT NETWORK NODE (Replacing Bar Chart - Bottom Right) */}
+               <div className="absolute bottom-40 -right-5 w-32 px-3 py-2 bg-white/90 backdrop-blur-md border border-gray-100 rounded-lg shadow-lg transform rotate-y-[-12deg] rotate-z-[5deg] animate-float delay-200 z-10">
+                  <div className="flex items-center gap-2 mb-2">
+                     <FiUsers className="text-gold-500 text-xs" />
+                     <span className="text-[9px] font-bold text-gray-500 uppercase">Talent Node</span>
+                  </div>
+                  <div className="flex -space-x-2">
+                     <div className="w-6 h-6 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[8px] text-gray-600">A</div>
+                     <div className="w-6 h-6 rounded-full bg-gold-100 border-2 border-white flex items-center justify-center text-[8px] text-gold-600">B</div>
+                     <div className="w-6 h-6 rounded-full bg-gray-800 border-2 border-white flex items-center justify-center text-[8px] text-white">+</div>
+                  </div>
                </div>
-               {/* Abstract Grid Plane (Bottom Left) */}
-               <div className="absolute bottom-10 left-20 w-48 h-48 bg-[radial-gradient(#9ca3af_1px,transparent_1px)] [background-size:12px_12px] transform rotate-x-[70deg] rotate-z-[10deg] opacity-20 blur-[1px] -z-20 animate-pulse"></div>
-               {/* Floating Data Box (Top Right) */}
-               <div className="absolute top-40 right-20 w-16 h-16 bg-white/5 border border-gold-200/20 transform rotate-x-[45deg] rotate-z-[45deg] animate-float blur-[1px] -z-10"></div>
-                {/* Distant Structure (Far back center) */}
-               <div className="absolute top-1/2 left-1/3 w-24 h-48 border-l border-b border-gray-200/30 transform skew-y-12 blur-md -z-30 opacity-40"></div>
+
+               {/* 3. AGRO-TECH SPHERE (Replacing T-Coin - Top Left) */}
+               <div className="absolute top-24 left-10 w-16 h-16 rounded-full border border-gold-400/30 flex items-center justify-center animate-float delay-500 -z-10 bg-white/50 backdrop-blur-sm">
+                  <div className="absolute inset-0 rounded-full border-t-2 border-gold-400 animate-spin"></div>
+                  <FiSun className="text-gold-600 text-2xl fill-gold-100" />
+               </div>
+
+               {/* 4. Hexagon Cluster (Supply Chain Structure - Top Right) */}
+               <div className="absolute top-20 right-0 flex flex-col gap-1 transform rotate-z-[15deg] animate-float delay-500 -z-10">
+                  <FiHexagon className="text-gold-200 text-3xl fill-gold-50/50" />
+                  <div className="flex gap-1 -mt-2 ml-4">
+                     <FiHexagon className="text-gray-200 text-2xl" />
+                     <FiHexagon className="text-gold-300 text-2xl fill-gold-50" />
+                  </div>
+               </div>
+
+               {/* 5. Global Grid Plane (Foundation) */}
+               <div className="absolute bottom-10 left-0 w-full h-64 bg-[radial-gradient(#9ca3af_1px,transparent_1px)] [background-size:20px_20px] transform rotate-x-[75deg] opacity-20 -z-50 pointer-events-none"></div>
+
+               {/* 6. Network Lines */}
+               <svg className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-30">
+                  {/* Connecting Agro to Center */}
+                  <line x1="20%" y1="20%" x2="40%" y2="40%" stroke="#B08D55" strokeWidth="1" strokeDasharray="4,4" />
+                  {/* Connecting Talent to Center */}
+                  <line x1="80%" y1="70%" x2="60%" y2="50%" stroke="#B08D55" strokeWidth="1" strokeDasharray="4,4" />
+               </svg>
+
+               {/* 7. Abstract Wireframe Cubes (Background Depth) */}
+               <div className="absolute top-40 left-0 w-24 h-24 border border-gray-200 rounded-xl transform rotate-x-[60deg] rotate-z-[20deg] animate-[spin_40s_linear_infinite] -z-20 opacity-50"></div>
+               <div className="absolute bottom-32 right-10 w-32 h-32 border border-gold-200/40 rounded-xl transform rotate-x-[60deg] rotate-z-[-20deg] animate-[spin_50s_linear_infinite_reverse] -z-20 opacity-50"></div>
 
 
-               {/* --- MAIN ISOMETRIC STACK (KEPT) --- */}
-               <div className="relative w-[300px] h-[400px] transform rotate-x-[60deg] rotate-z-[45deg] hover:rotate-z-[40deg] transition-transform duration-1000 ease-out preserve-3d z-10">
+               {/* --- MAIN ISOMETRIC STACK (CORE) --- */}
+               <div className="relative w-[320px] h-[420px] transform rotate-x-[60deg] rotate-z-[45deg] hover:rotate-z-[40deg] transition-transform duration-1000 ease-out preserve-3d z-10 my-10">
                   
-                  {/* LAYER 1: BOTTOM */}
+                  {/* LAYER 1: BOTTOM (Infrastructure) */}
                   <div className="absolute inset-0 bg-gray-900 rounded-xl shadow-2xl transform translate-z-0 border border-gray-700 group">
                       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                         <span className="text-gray-500 font-mono text-xs tracking-widest uppercase">Infrastructure Layer</span>
+                      <div className="absolute inset-0 flex items-center justify-center flex-col gap-2">
+                         <FiBox className="text-gray-600 text-3xl" />
+                         <span className="text-gray-600 font-mono text-[10px] tracking-widest uppercase">Base Layer</span>
                       </div>
                   </div>
 
-                  {/* LAYER 2: MIDDLE */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl shadow-[0_20px_50px_rgba(176,141,85,0.3)] transform translate-z-[60px] animate-[float-iso_6s_ease-in-out_infinite] border border-gold-300">
+                  {/* LAYER 2: MIDDLE (Finance - Capital Flow) */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl shadow-[0_20px_50px_rgba(176,141,85,0.3)] transform translate-z-[70px] animate-[float-iso_6s_ease-in-out_infinite] border border-gold-300 overflow-hidden">
                       <div className="absolute inset-0 bg-white/10"></div>
+                      <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transform rotate-45 animate-[shimmer_3s_infinite]"></div>
                       <div className="absolute inset-0 flex items-center justify-center">
-                         <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm">
-                            <FiTrendingUp className="text-white text-3xl" />
+                         <div className="w-20 h-20 rounded-full border border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm shadow-inner">
+                            <FiTrendingUp className="text-white text-4xl" />
                          </div>
                       </div>
                   </div>
 
-                  {/* LAYER 3: TOP */}
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-xl rounded-xl shadow-lg border border-white/60 transform translate-z-[120px] animate-[float-iso_6s_ease-in-out_infinite_reverse]">
-                      <div className="p-6 h-full flex flex-col justify-between">
+                  {/* LAYER 3: TOP (Vertical Synergy - REPLACED YIELD) */}
+                  <div className="absolute inset-0 bg-white/40 backdrop-blur-xl rounded-xl shadow-lg border border-white/60 transform translate-z-[140px] animate-[float-iso_6s_ease-in-out_infinite_reverse]">
+                      <div className="p-8 h-full flex flex-col justify-between">
                          <div className="flex justify-between items-center">
-                            <div className="w-8 h-8 rounded-md bg-white shadow-sm flex items-center justify-center text-gold-600"><FiZap /></div>
-                            <div className="px-2 py-1 rounded-full bg-green-500/10 text-green-700 text-[10px] font-bold uppercase">Active</div>
+                            <div className="px-3 py-1 rounded-full bg-white/50 text-gold-700 text-[10px] font-bold uppercase shadow-sm border border-gold-100">Live Synergy</div>
+                            <FiActivity className="text-gold-600 text-sm animate-pulse" />
                          </div>
-                         <div className="space-y-3">
-                            <div className="h-2 w-3/4 bg-gray-900/10 rounded-full"></div>
-                            <div className="h-2 w-1/2 bg-gray-900/10 rounded-full"></div>
-                         </div>
-                         <div className="pt-4 border-t border-white/20 flex justify-between items-end">
-                            <div>
-                               <div className="text-[10px] text-gray-500 uppercase tracking-wider">Growth</div>
-                               <div className="text-2xl font-serif text-gray-900">+128%</div>
+                         
+                         {/* 3 Active Vertical Indicators */}
+                         <div className="space-y-3 opacity-90">
+                            <div className="flex items-center gap-2">
+                               <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
+                               <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                  <div className="h-full w-3/4 bg-gray-900"></div>
+                               </div>
+                               <span className="text-[8px] font-bold text-gray-600 uppercase">Fin</span>
                             </div>
-                            <FiBarChart2 className="text-gold-600 text-xl" />
+                            <div className="flex items-center gap-2">
+                               <div className="w-1.5 h-1.5 rounded-full bg-gold-500"></div>
+                               <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                  <div className="h-full w-4/5 bg-gold-500"></div>
+                               </div>
+                               <span className="text-[8px] font-bold text-gray-600 uppercase">Agro</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                               <div className="w-1.5 h-1.5 rounded-full bg-gray-500"></div>
+                               <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                  <div className="h-full w-2/3 bg-gray-500"></div>
+                               </div>
+                               <span className="text-[8px] font-bold text-gray-600 uppercase">Hire</span>
+                            </div>
+                         </div>
+
+                         <div className="pt-6 border-t border-white/30 flex justify-between items-end">
+                            <div>
+                               <div className="text-[10px] text-gray-600 uppercase tracking-wider mb-1">Group Synergy</div>
+                               <div className="text-xl font-serif text-gray-900 leading-none">Optimized</div>
+                            </div>
+                            <div className="w-10 h-10 rounded-full bg-gold-500 text-white flex items-center justify-center shadow-lg">
+                               <FiCheckCircle />
+                            </div>
                          </div>
                       </div>
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-white/40 to-transparent pointer-events-none rounded-xl"></div>
                   </div>
 
-                  {/* Connection Lines */}
-                  <div className="absolute inset-0 flex items-center justify-center transform translate-z-[30px] opacity-20">
-                     <div className="w-[1px] h-[120px] bg-dashed border-l border-gray-400 border-dashed"></div>
+                  {/* Vertical Guide Line */}
+                  <div className="absolute inset-0 flex items-center justify-center transform translate-z-[35px] opacity-30 pointer-events-none">
+                     <div className="w-[1px] h-[140px] border-l-2 border-dashed border-gray-400"></div>
                   </div>
                </div>
                
-               {/* Floating Foreground Icons (KEPT) */}
-               <div className="absolute top-1/3 right-5 w-16 h-16 bg-white rounded-lg shadow-xl animate-bounce delay-700 flex items-center justify-center z-20 border border-gray-50">
-                  <FiUsers className="text-gold-500" />
+               {/* Foreground Floating Icons (Anchors) */}
+               <div className="absolute top-1/3 right-5 w-16 h-16 bg-white rounded-xl shadow-2xl animate-bounce delay-700 flex items-center justify-center z-20 border border-gray-100">
+                  <FiBriefcase className="text-gold-500 text-xl" />
                </div>
-               <div className="absolute bottom-1/4 left-5 w-12 h-12 bg-gold-500 rounded-lg shadow-xl animate-pulse flex items-center justify-center z-20">
-                  <FiShield className="text-white" />
+               <div className="absolute bottom-1/4 left-5 w-12 h-12 bg-gold-500 rounded-xl shadow-2xl animate-pulse flex items-center justify-center z-20 border border-white/20">
+                  <FiAnchor className="text-white text-lg" />
                </div>
 
             </div>
@@ -132,7 +203,6 @@ export default function Home() {
           SECTION 2: OUR ENTERPRISES (PRESERVED)
           ========================================================================= */}
       <section className="py-32 bg-gray-50 relative overflow-hidden">
-        {/* ... (Content of this section remains exactly the same) ... */}
         <div className="absolute inset-0 z-0">
            <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-gold-200/20 rounded-full blur-[120px] animate-[pulse_10s_ease-in-out_infinite] mix-blend-multiply"></div>
            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gray-200/50 rounded-full blur-[100px] animate-[pulse_15s_ease-in-out_infinite] mix-blend-multiply"></div>
@@ -191,7 +261,7 @@ function ModernStatBox({ number, label, icon }: any) {
     </div>
   )
 }
-// (EnterpriseCard remains the same)
+
 function EnterpriseCard({ title, subtitle, desc, image, link, icon }: any) {
   return (
     <Link href={link} className="group relative h-[550px] bg-white rounded-sm overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-gold-100/50 transition-all duration-700 block">
