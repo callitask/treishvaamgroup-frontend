@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Script from 'next/script' // Required for optimized script loading
+import Script from 'next/script'
 import './globals.css'
 
-// Import Layout Components
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
@@ -21,50 +20,39 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
+      <head>
+         {/* AdSense Verification often checks for the tag in the head manually */}
+         <script 
+            async 
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6767594004709750"
+            crossOrigin="anonymous"
+         ></script>
+      </head>
       <body>
         <Navbar />
-        
-        {/* Main Content */}
-        <div className="flex-grow">
-          {children}
-        </div>
-
+        <div className="flex-grow">{children}</div>
         <Footer />
 
         {/* ==========================================
-            1. IUBENDA COOKIE CONSENT SCRIPTS 
+            IUBENDA (TEMPORARILY DISABLED FOR VERIFICATION)
+            Uncomment this block AFTER you get the "Verified" email from Google.
            ========================================== */}
-        
-        {/* Iubenda Configuration (Must run first) */}
-        <Script id="iubenda-config" strategy="beforeInteractive">
+        {/* <Script id="iubenda-config" strategy="beforeInteractive">
           {`
             var _iub = _iub || [];
             _iub.csConfiguration = {"siteId":4378854,"cookiePolicyId":54282069,"lang":"en","storage":{"useSiteId":true}};
           `}
         </Script>
-
-        {/* Iubenda Autoblocking */}
-        <Script 
-          src="https://cs.iubenda.com/autoblocking/4378854.js" 
-          strategy="beforeInteractive" 
-        />
-
-        {/* Iubenda GPP Stub */}
-        <Script 
-          src="//cdn.iubenda.com/cs/gpp/stub.js" 
-          strategy="beforeInteractive" 
-        />
-
-        {/* Iubenda Main Script */}
-        <Script 
-          src="//cdn.iubenda.com/cs/iubenda_cs.js" 
-          strategy="afterInteractive" 
-          charSet="UTF-8" 
-        />
+        <Script src="https://cs.iubenda.com/autoblocking/4378854.js" strategy="beforeInteractive" />
+        <Script src="//cdn.iubenda.com/cs/gpp/stub.js" strategy="beforeInteractive" />
+        <Script src="//cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" charSet="UTF-8" /> 
+        */}
 
         {/* ==========================================
-            2. GOOGLE ADSENSE (Verification Code)
+            GOOGLE ADSENSE & ANALYTICS
            ========================================== */}
+        {/* We moved the main AdSense script to <head> for easier verification, 
+            but keeping this component version is fine for when the app runs. */}
         <Script
           id="google-adsense"
           async
@@ -73,9 +61,6 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
-        {/* ==========================================
-            3. GOOGLE ANALYTICS
-           ========================================== */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J1X48J18M4"
           strategy="afterInteractive"
