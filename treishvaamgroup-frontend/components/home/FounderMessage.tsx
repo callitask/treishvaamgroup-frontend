@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import { FaQuoteLeft } from 'react-icons/fa'
+import { useEffect, useRef, useState } from 'react'
 
 export default function FounderMessage() {
   
-  // SEO: Structured Data for the Founder and the Group
+  // --- SEO DATA ---
   const founderSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -19,45 +20,76 @@ export default function FounderMessage() {
     "description": "Visionary entrepreneur and architect of the Treishvaam Group ecosystem, focusing on finance, agriculture, and human capital.",
     "image": "https://treishvaamgroup.com/amitsagar-kandpal-photo.png",
     "sameAs": [
-      "https://www.linkedin.com/in/amitsagar-kandpal", // Placeholder if known
-      "https://twitter.com/amitsagark" // Placeholder if known
+      "https://www.linkedin.com/in/amitsagar-kandpal",
+      "https://twitter.com/amitsagark" 
     ]
   }
 
+  // --- ANIMATION ENGINE (Intersection Observer) ---
+  // This detects when the section is visible to trigger the "Reveal"
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger animation when 20% of the section is visible
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect() // Run only once for permanence
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  // Helper class to manage staggered delays
+  // opacity-0 by default, then animate-fade-in-up when visible
+  const getAnimClass = (delay: string) => 
+    isVisible 
+      ? `opacity-0 animate-fade-in-up ${delay}` // Apply animation with delay
+      : 'opacity-0 translate-y-10' // Hidden state
+
   return (
-    <section className="relative py-24 bg-white border-t border-gray-100 overflow-hidden" aria-labelledby="founder-vision">
+    <section 
+      ref={sectionRef}
+      className="relative py-24 bg-white border-t border-gray-100 overflow-hidden" 
+      aria-labelledby="founder-vision"
+    >
       
-      {/* Inject JSON-LD for Search Engines & AI */}
+      {/* Inject JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }}
       />
 
-      {/* Subtle Background Texture - Clean & Minimal */}
+      {/* Subtle Background Texture */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-100/50 skew-x-12 translate-x-32 -z-10" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
-          {/* 1. VISUAL IDENTITY (Constrained & Sharp) */}
-          <div className="w-full lg:w-5/12 flex justify-center lg:justify-end">
+          {/* 1. VISUAL IDENTITY (Animates First) */}
+          <div className={`w-full lg:w-5/12 flex justify-center lg:justify-end transition-all duration-1000 ${getAnimClass('')}`}>
             <div className="relative w-72 h-80 md:w-80 md:h-96 group">
               
-              {/* Image Container with Elegant Border */}
+              {/* Image Container */}
               <div className="absolute inset-0 bg-gray-200 rounded-sm overflow-hidden shadow-2xl shadow-gray-200 border border-gray-100">
                 <Image 
                   src="/amitsagar-kandpal-photo.png" 
                   alt="Amitsagar Kandpal - Founder of Treishvaam Group"
                   fill
-                  className="object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-[1.5s] group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 400px"
                   priority
                 />
-                {/* Subtle Gradient Overlay for Depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent mix-blend-multiply" />
               </div>
 
-              {/* Decorative Geometric Elements */}
+              {/* Decorative Elements */}
               <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold-500/30 -z-10" />
               <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold-500/30 -z-10" />
               
@@ -69,29 +101,37 @@ export default function FounderMessage() {
             </div>
           </div>
 
-          {/* 2. PHILOSOPHICAL NARRATIVE (SEO Rich) */}
+          {/* 2. PHILOSOPHICAL NARRATIVE (Animates Second) */}
           <div className="w-full lg:w-7/12 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 mb-6 opacity-80">
+            
+            {/* Tagline */}
+            <div className={`inline-flex items-center gap-2 mb-6 ${getAnimClass('[animation-delay:200ms]')}`}>
                <span className="w-8 h-[1px] bg-gold-600"></span>
                <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Chairman's Message</span>
             </div>
 
-            <h2 id="founder-vision" className="text-3xl md:text-5xl font-serif text-corporate-900 mb-8 leading-[1.2]">
+            {/* Headline */}
+            <h2 
+              id="founder-vision" 
+              className={`text-3xl md:text-5xl font-serif text-corporate-900 mb-8 leading-[1.2] ${getAnimClass('[animation-delay:400ms]')}`}
+            >
               Architecting the <br/>
               <span className="italic text-gold-600">Substrates of Permanence.</span>
             </h2>
 
-            <div className="prose prose-lg text-corporate-600 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            {/* Content Body */}
+            <div className={`prose prose-lg text-corporate-600 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 ${getAnimClass('[animation-delay:600ms]')}`}>
               <p className="mb-6">
                 <FaQuoteLeft className="inline-block text-gold-300 text-2xl mr-3 -mt-3" />
-                At Treishvaam, we are not merely building companies; we are engineering the structural necessities of a resilient future. My philosophy is rooted in a simple conviction: true value lies at the intersection of <strong className="text-corporate-900 font-medium">digital efficiency</strong> and <strong className="text-corporate-900 font-medium">tangible sovereignty</strong>.
+                At Treishvaam Group, we are not merely building companies; we are engineering the structural necessities of a resilient future. My philosophy is rooted in a simple conviction: true value lies at the intersection of <strong className="text-corporate-900 font-medium">digital efficiency</strong> and <strong className="text-corporate-900 font-medium">tangible sovereignty</strong>.
               </p>
               <p>
                 In an era of transience, we are committed to the long game. Whether we are decoding capital markets, revolutionizing nutritional supply chains, or liberating human potential from bureaucratic friction, our ideology remains constant—to build self-sustaining ecosystems that empower nations and individuals alike. We do not just predict the future; we build the infrastructure that makes it possible.
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center lg:justify-start justify-center gap-8 mt-10 border-t border-gray-100 pt-8">
+            {/* Signature Stats Footer */}
+            <div className={`flex flex-col md:flex-row items-center lg:justify-start justify-center gap-8 mt-10 border-t border-gray-100 pt-8 ${getAnimClass('[animation-delay:800ms]')}`}>
               <div className="flex items-center gap-4">
                  <div className="text-4xl font-serif text-gold-500">3</div>
                  <div className="text-xs text-gray-500 uppercase tracking-wide font-medium text-left">
