@@ -1,6 +1,7 @@
 'use client'
 
 import HeroSection from '@/components/home/HeroSection'
+import FounderMessage from '@/components/home/FounderMessage'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FiArrowRight, FiTrendingUp, FiSun, FiUsers, FiGlobe, FiLayers, FiCpu, FiShield, FiZap, FiBox, FiCheckCircle, FiDatabase, FiLock, FiHexagon, FiBriefcase, FiAnchor, FiActivity, FiUser, FiCheck, FiClock, FiWifi, FiServer } from 'react-icons/fi'
@@ -85,7 +86,7 @@ export default function Home() {
               </p>
               
               <div className="grid grid-cols-3 gap-4 pt-6">
-                <ModernStatBox number="03" label="Vertials" icon={<FiLayers />} />
+                <ModernStatBox number="03" label="Verticals" icon={<FiLayers />} />
                 <ModernStatBox number="Global" label="Scale" icon={<FiGlobe />} />
                 <ModernStatBox number="100%" label="Digital" icon={<FiCpu />} />
               </div>
@@ -299,6 +300,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================================
+          SECTION 1.5: FOUNDER MESSAGE & VISION (NEW)
+          ========================================================================= */}
+      <FounderMessage />
 
       {/* =========================================================================
           SECTION 2: OUR ENTERPRISES (PRESERVED)
