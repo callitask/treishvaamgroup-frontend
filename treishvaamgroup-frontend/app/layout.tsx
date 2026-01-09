@@ -18,15 +18,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Logic: Ensure 'ca-' prefix exists. User provided "pub-..." so we prepend "ca-" if missing.
+  const rawId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || '';
+  const adsenseId = rawId.startsWith('ca-') ? rawId : `ca-${rawId}`;
+  const adsenseSrc = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`;
+
   return (
     <html lang="en" className={inter.className}>
       <head>
-         {/* AdSense Verification often checks for the tag in the head manually */}
-         <script 
-            async 
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6767594004709750"
-            crossOrigin="anonymous"
-         ></script>
+         {/* AdSense Verification (Dynamic from Env Var) */}
+         {rawId && (
+           <script 
+              async 
+              src={adsenseSrc}
+              crossOrigin="anonymous"
+           ></script>
+         )}
       </head>
       <body>
         <Navbar />
@@ -34,32 +41,17 @@ export default function RootLayout({
         <Footer />
 
         {/* ==========================================
-            IUBENDA (TEMPORARILY DISABLED FOR VERIFICATION)
-            Uncomment this block AFTER you get the "Verified" email from Google.
-           ========================================== */}
-        {/* <Script id="iubenda-config" strategy="beforeInteractive">
-          {`
-            var _iub = _iub || [];
-            _iub.csConfiguration = {"siteId":4378854,"cookiePolicyId":54282069,"lang":"en","storage":{"useSiteId":true}};
-          `}
-        </Script>
-        <Script src="https://cs.iubenda.com/autoblocking/4378854.js" strategy="beforeInteractive" />
-        <Script src="//cdn.iubenda.com/cs/gpp/stub.js" strategy="beforeInteractive" />
-        <Script src="//cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" charSet="UTF-8" /> 
-        */}
-
-        {/* ==========================================
             GOOGLE ADSENSE & ANALYTICS
            ========================================== */}
-        {/* We moved the main AdSense script to <head> for easier verification, 
-            but keeping this component version is fine for when the app runs. */}
-        <Script
-          id="google-adsense"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6767594004709750"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        {rawId && (
+          <Script
+            id="google-adsense"
+            async
+            src={adsenseSrc}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J1X48J18M4"
