@@ -19,7 +19,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className={`font-serif font-bold text-2xl ${isScrolled ? 'text-corporate-900' : 'text-corporate-900'}`}>T</div>
+          <div className="font-serif font-bold text-2xl text-corporate-900">T</div>
           <div className="flex flex-col">
              <span className="font-serif font-bold tracking-tight text-corporate-900 leading-none">TREISHVAAM</span>
              <span className="text-[0.6rem] uppercase tracking-[0.3em] text-gold-500">Group</span>
@@ -32,6 +32,18 @@ export default function Navbar() {
           <NavLink href="/businesses" label="Our Verticals" />
           <NavLink href="/investors" label="Partners" />
           <NavLink href="/sustainability" label="Sustainability" />
+          
+          {/* CRITICAL ADSENSE LINK: Cross-Domain Link to Finance */}
+          <a 
+            href="https://treishfin.treishvaamgroup.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-xs font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors relative group"
+          >
+            Finance
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all group-hover:w-full"></span>
+          </a>
+
           <Link href="/contact" className="px-6 py-2 border border-corporate-900 text-corporate-900 text-xs font-bold uppercase tracking-widest hover:bg-corporate-900 hover:text-white transition-all">
             Contact
           </Link>
@@ -42,6 +54,34 @@ export default function Navbar() {
           {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </nav>
+
+      {/* Mobile Menu - Implemented matching your design logic */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 py-6 px-6 flex flex-col gap-6">
+          <MobileNavLink href="/about" label="Vision" onClick={() => setIsOpen(false)} />
+          <MobileNavLink href="/businesses" label="Our Verticals" onClick={() => setIsOpen(false)} />
+          <MobileNavLink href="/investors" label="Partners" onClick={() => setIsOpen(false)} />
+          <MobileNavLink href="/sustainability" label="Sustainability" onClick={() => setIsOpen(false)} />
+          
+          <a 
+            href="https://treishfin.treishvaamgroup.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-sm font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500"
+            onClick={() => setIsOpen(false)}
+          >
+            Finance Portal
+          </a>
+
+          <Link 
+            href="/contact" 
+            className="px-6 py-3 border border-corporate-900 text-corporate-900 text-xs font-bold uppercase tracking-widest hover:bg-corporate-900 hover:text-white transition-all text-center"
+            onClick={() => setIsOpen(false)}
+          >
+            Contact
+          </Link>
+        </div>
+      )}
     </header>
   )
 }
@@ -51,6 +91,14 @@ function NavLink({ href, label }: { href: string, label: string }) {
     <Link href={href} className="text-xs font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors relative group">
       {label}
       <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all group-hover:w-full"></span>
+    </Link>
+  )
+}
+
+function MobileNavLink({ href, label, onClick }: { href: string, label: string, onClick: () => void }) {
+  return (
+    <Link href={href} onClick={onClick} className="text-sm font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors">
+      {label}
     </Link>
   )
 }

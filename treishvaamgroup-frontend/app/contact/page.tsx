@@ -39,17 +39,17 @@ export default function ContactPage() {
                  <InfoBlock 
                     icon={FiMapPin} 
                     title="Global Headquarters" 
-                    desc="Treishvaam Towers, Financial District, Mumbai, India" 
+                    desc="Bangalore, Karnataka, India" 
                  />
                  <InfoBlock 
                     icon={FiMail} 
                     title="General Inquiries" 
-                    desc="info@treishvaamgroup.com" 
+                    desc="treishvaamgroup@gmail.com" 
                  />
                  <InfoBlock 
                     icon={FiPhone} 
                     title="Corporate Line" 
-                    desc="+91 22 4567 8900" 
+                    desc="+91 81785 29633" 
                  />
                  
                  <div className="mt-8 pt-8 border-t border-gray-100">

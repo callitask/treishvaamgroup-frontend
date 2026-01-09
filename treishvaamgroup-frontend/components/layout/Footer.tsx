@@ -129,22 +129,22 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-white uppercase tracking-wide mb-5">Contact</h4>
             <div className="space-y-4">
               <a
-                href="mailto:info@treishvaamgroup.com"
+                href="mailto:treishvaamgroup@gmail.com"
                 className="flex items-center gap-3 text-slate-400 hover:text-accent-400 transition-colors text-sm group"
               >
                 <FiMail className="w-5 h-5 flex-shrink-0" />
-                <span>info@treishvaam.com</span>
+                <span>treishvaamgroup@gmail.com</span>
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+918178529633"
                 className="flex items-center gap-3 text-slate-400 hover:text-accent-400 transition-colors text-sm group"
               >
                 <FiPhone className="w-5 h-5 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 81785 29633</span>
               </a>
               <div className="flex items-start gap-3 text-slate-400 text-sm">
                 <FiMapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>Corporate Office<br />Mumbai, India</span>
+                <span>Corporate Office<br />Bangalore, India</span>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function Footer() {
               &copy; {currentYear} Treishvaam Group. All rights reserved.
             </p>
             <p>
-              Crafted with <span className="text-accent-500">♥</span> for excellence
+              Driving Global Excellence.
             </p>
           </div>
         </div>
