@@ -1,6 +1,6 @@
 import HeroSection from '@/components/home/HeroSection'
 import Link from 'next/link'
-import { FiArrowRight, FiTrendingUp, FiSun, FiUsers, FiGlobe, FiLayers, FiCpu, FiShield, FiZap, FiBox, FiCheckCircle, FiDatabase, FiLock, FiHexagon, FiBriefcase, FiAnchor, FiActivity } from 'react-icons/fi'
+import { FiArrowRight, FiTrendingUp, FiSun, FiUsers, FiGlobe, FiLayers, FiCpu, FiShield, FiZap, FiBox, FiCheckCircle, FiHexagon, FiBriefcase, FiAnchor, FiActivity, FiUser, FiCheck, FiClock } from 'react-icons/fi'
 
 export default function Home() {
   return (
@@ -66,7 +66,7 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 2. TALENT NETWORK NODE (Replacing Bar Chart - Bottom Right) */}
+               {/* 2. TALENT NETWORK NODE (Bottom Right) */}
                <div className="absolute bottom-40 -right-5 w-32 px-3 py-2 bg-white/90 backdrop-blur-md border border-gray-100 rounded-lg shadow-lg transform rotate-y-[-12deg] rotate-z-[5deg] animate-float delay-200 z-10">
                   <div className="flex items-center gap-2 mb-2">
                      <FiUsers className="text-gold-500 text-xs" />
@@ -79,13 +79,13 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 3. AGRO-TECH SPHERE (Replacing T-Coin - Top Left) */}
+               {/* 3. AGRO-TECH SPHERE (Top Left) */}
                <div className="absolute top-24 left-10 w-16 h-16 rounded-full border border-gold-400/30 flex items-center justify-center animate-float delay-500 -z-10 bg-white/50 backdrop-blur-sm">
                   <div className="absolute inset-0 rounded-full border-t-2 border-gold-400 animate-spin"></div>
                   <FiSun className="text-gold-600 text-2xl fill-gold-100" />
                </div>
 
-               {/* 4. Hexagon Cluster (Supply Chain Structure - Top Right) */}
+               {/* 4. Hexagon Cluster (Top Right) */}
                <div className="absolute top-20 right-0 flex flex-col gap-1 transform rotate-z-[15deg] animate-float delay-500 -z-10">
                   <FiHexagon className="text-gold-200 text-3xl fill-gold-50/50" />
                   <div className="flex gap-1 -mt-2 ml-4">
@@ -94,18 +94,48 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 5. Global Grid Plane (Foundation) */}
+               {/* --- NEW HIRING ELEMENTS (NON-OVERLAPPING) --- */}
+
+               {/* 5. Candidate Match Card (Left Middle Gap) */}
+               <div className="absolute top-[55%] -left-8 px-3 py-2 bg-white/90 backdrop-blur-md border border-gray-100 rounded-lg shadow-lg transform -rotate-z-[8deg] animate-float delay-700 z-10 flex items-center gap-3">
+                  <div className="relative">
+                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                      <FiUser className="text-gray-400 text-sm" />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full flex items-center justify-center">
+                       <FiCheck className="text-white text-[8px]" />
+                    </div>
+                  </div>
+                  <div>
+                     <div className="text-[9px] font-bold text-gray-800 leading-none">Top Talent</div>
+                     <div className="text-[7px] font-medium text-gold-600 uppercase tracking-wider mt-0.5">Matched</div>
+                  </div>
+               </div>
+
+               {/* 6. Hiring Velocity Badge (Right Middle Gap) */}
+               <div className="absolute top-[55%] right-0 px-3 py-2 bg-gold-50/90 backdrop-blur-sm border border-gold-100 rounded-lg shadow-sm transform rotate-z-[6deg] animate-float delay-1000 z-10 flex items-center gap-2">
+                   <div className="p-1 bg-white rounded-md shadow-sm">
+                      <FiClock className="text-gold-600 text-xs" />
+                   </div>
+                   <div>
+                      <div className="text-[8px] font-bold text-gray-500 uppercase">Time-to-Hire</div>
+                      <div className="text-[10px] font-bold text-gray-900 leading-none">-40% Faster</div>
+                   </div>
+               </div>
+
+
+               {/* 7. Global Grid Plane */}
                <div className="absolute bottom-10 left-0 w-full h-64 bg-[radial-gradient(#9ca3af_1px,transparent_1px)] [background-size:20px_20px] transform rotate-x-[75deg] opacity-20 -z-50 pointer-events-none"></div>
 
-               {/* 6. Network Lines */}
+               {/* 8. Network Lines */}
                <svg className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-30">
-                  {/* Connecting Agro to Center */}
                   <line x1="20%" y1="20%" x2="40%" y2="40%" stroke="#B08D55" strokeWidth="1" strokeDasharray="4,4" />
-                  {/* Connecting Talent to Center */}
                   <line x1="80%" y1="70%" x2="60%" y2="50%" stroke="#B08D55" strokeWidth="1" strokeDasharray="4,4" />
+                  {/* Connect new nodes */}
+                  <line x1="10%" y1="55%" x2="30%" y2="50%" stroke="#9CA3AF" strokeWidth="1" strokeDasharray="2,2" />
                </svg>
 
-               {/* 7. Abstract Wireframe Cubes (Background Depth) */}
+               {/* 9. Background Wireframe Cubes */}
                <div className="absolute top-40 left-0 w-24 h-24 border border-gray-200 rounded-xl transform rotate-x-[60deg] rotate-z-[20deg] animate-[spin_40s_linear_infinite] -z-20 opacity-50"></div>
                <div className="absolute bottom-32 right-10 w-32 h-32 border border-gold-200/40 rounded-xl transform rotate-x-[60deg] rotate-z-[-20deg] animate-[spin_50s_linear_infinite_reverse] -z-20 opacity-50"></div>
 
@@ -133,7 +163,7 @@ export default function Home() {
                       </div>
                   </div>
 
-                  {/* LAYER 3: TOP (Vertical Synergy - REPLACED YIELD) */}
+                  {/* LAYER 3: TOP (Vertical Synergy) */}
                   <div className="absolute inset-0 bg-white/40 backdrop-blur-xl rounded-xl shadow-lg border border-white/60 transform translate-z-[140px] animate-[float-iso_6s_ease-in-out_infinite_reverse]">
                       <div className="p-8 h-full flex flex-col justify-between">
                          <div className="flex justify-between items-center">
