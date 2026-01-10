@@ -19,15 +19,9 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-// Define the Canonical Base URL (Non-WWW)
-const BASE_URL = 'https://treishvaamgroup.com';
-
 // --- 2. ENTERPRISE METADATA CONFIGURATION ---
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-  alternates: {
-    canonical: '/',
-  },
+  metadataBase: new URL('https://www.treishvaamgroup.com'),
   title: {
     default: 'Treishvaam Group | Global Enterprise Architecture',
     template: '%s | Treishvaam Group'
@@ -60,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: BASE_URL,
+    url: 'https://www.treishvaamgroup.com',
     siteName: 'Treishvaam Group',
     title: 'Treishvaam Group | Architecting Value Chains',
     description: 'Fusing digital efficiency with tangible assets. Explore our verticals in Finance, Agriculture, and Workforce.',
@@ -92,36 +86,78 @@ export default function RootLayout({
 }) {
   
   // --- 3. STRUCTURED DATA (JSON-LD) ---
-  const organizationSchema = {
+  // STRATEGY: Define Person and Organization separately, then link them.
+  const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Corporation",
-    "name": "Treishvaam Group",
-    "alternateName": "Treishvaam",
-    "url": BASE_URL,
-    "logo": `${BASE_URL}/logo512.webp`,
-    "email": "treishvaamgroup@gmail.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/treishvaamgroup",
-      "https://twitter.com/treishvaamgroup",
-      "https://www.instagram.com/treishvaamgroup"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "treishvaamgroup@gmail.com",
-      "areaServed": "Global",
-      "availableLanguage": "English"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Amitsagar Kandpal",
-      "email": "treishvaam@gmail.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/amitsagarkandpal",
-        "https://twitter.com/treishvaam",
-        "https://www.instagram.com/treishvaam"
-      ]
-    }
+    "@graph": [
+      {
+        // ENTITY 1: THE CORPORATION
+        "@type": "Corporation",
+        "@id": "https://www.treishvaamgroup.com/#organization",
+        "name": "Treishvaam Group",
+        "alternateName": "Treishvaam",
+        "url": "https://www.treishvaamgroup.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.treishvaamgroup.com/logo512.webp"
+        },
+        "email": "treishvaamgroup@gmail.com",
+        "telephone": "+91 81785 29633",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Electronic City",
+          "addressLocality": "Bangalore",
+          "addressRegion": "Karnataka",
+          "postalCode": "560100",
+          "addressCountry": "IN"
+        },
+        // Link to the Person defined below
+        "founder": {
+          "@id": "https://www.treishvaamgroup.com/#founder"
+        },
+        // COMPANY Socials only
+        "sameAs": [
+          "https://www.linkedin.com/company/treishvaamgroup",
+          "https://twitter.com/treishvaamgroup", 
+          "https://x.com/treishvaamgroup",
+          "https://www.instagram.com/treishvaamgroup"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91 81785 29633",
+          "contactType": "customer service",
+          "email": "treishvaamgroup@gmail.com",
+          "areaServed": "Global",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        // ENTITY 2: THE PERSON (You)
+        // This claims the "Treishvaam" identity and links it to the group
+        "@type": "Person",
+        "@id": "https://www.treishvaamgroup.com/#founder",
+        "name": "Amitsagar Kandpal",
+        "alternateName": "Treishvaam", // <--- CRITICAL: Tells Google "I am Treishvaam"
+        "jobTitle": "Founder & Chairman",
+        "url": "https://www.treishvaamgroup.com",
+        "email": "callitask@gmail.com",
+        "telephone": "+91 81785 29633",
+        "worksFor": {
+          "@id": "https://www.treishvaamgroup.com/#organization"
+        },
+        "founderOf": {
+          "@id": "https://www.treishvaamgroup.com/#organization"
+        },
+        // PERSONAL Socials (The ones ranking for "Treishvaam")
+        "sameAs": [
+          "https://www.linkedin.com/in/amitsagarkandpal",
+          "https://twitter.com/treishvaam",
+          "https://x.com/treishvaam",
+          "https://www.instagram.com/treishvaam",
+          "https://in.pinterest.com/treishvaam" 
+        ]
+      }
+    ]
   }
 
   return (
@@ -129,7 +165,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </head>
       <body className="flex flex-col min-h-screen font-sans bg-white text-corporate-900 antialiased">
