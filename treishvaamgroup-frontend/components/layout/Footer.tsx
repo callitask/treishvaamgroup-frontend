@@ -35,7 +35,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-100">
+    <footer className="bg-gradient-to-b from-surface-50 via-surface-100 to-gold-100/30 text-corporate-900 border-t border-corporate-200">
       {/* Newsletter CTA */}
       <FooterNewsletter />
 
@@ -44,13 +44,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent-600 to-accent-700 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold">T</span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-corporate-900 rounded-none flex items-center justify-center shadow-lg">
+                <span className="text-gold-500 font-serif font-bold text-xl">T</span>
               </div>
-              <span className="text-lg font-bold text-white">Treishvaam</span>
+              <span className="text-lg font-serif font-bold text-corporate-900 tracking-tight">
+                Treishvaam
+              </span>
             </div>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+            <p className="text-corporate-600 text-sm mb-8 leading-relaxed font-sans">
               Global leader in business excellence, innovation, and sustainable value creation across multiple sectors.
             </p>
             <div className="flex gap-3">
@@ -61,9 +63,9 @@ export default function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-accent-600 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300"
+                    className="w-10 h-10 bg-white border border-corporate-200 hover:border-gold-400 text-corporate-600 hover:text-gold-600 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4" />
                   </a>
                 )
               })}
@@ -72,16 +74,18 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wide mb-5">Company</h4>
+            <h4 className="text-sm font-bold text-corporate-900 uppercase tracking-widest mb-6 font-sans">
+              Company
+            </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link, idx) => (
                 <li key={`company-${idx}`}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-accent-400 transition-colors text-sm flex items-center gap-1 group"
+                    className="text-corporate-600 hover:text-gold-600 transition-colors text-sm flex items-center gap-1 group font-medium"
                   >
                     {link.label}
-                    <FiArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <FiArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-gold-500" />
                   </Link>
                 </li>
               ))}
@@ -90,16 +94,18 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wide mb-5">Resources</h4>
+            <h4 className="text-sm font-bold text-corporate-900 uppercase tracking-widest mb-6 font-sans">
+              Resources
+            </h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link, idx) => (
                 <li key={`resources-${idx}`}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-accent-400 transition-colors text-sm flex items-center gap-1 group"
+                    className="text-corporate-600 hover:text-gold-600 transition-colors text-sm flex items-center gap-1 group font-medium"
                   >
                     {link.label}
-                    <FiArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <FiArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-gold-500" />
                   </Link>
                 </li>
               ))}
@@ -108,16 +114,18 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wide mb-5">Legal</h4>
+            <h4 className="text-sm font-bold text-corporate-900 uppercase tracking-widest mb-6 font-sans">
+              Legal
+            </h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link, idx) => (
                 <li key={`legal-${idx}`}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-accent-400 transition-colors text-sm flex items-center gap-1 group"
+                    className="text-corporate-600 hover:text-gold-600 transition-colors text-sm flex items-center gap-1 group font-medium"
                   >
                     {link.label}
-                    <FiArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <FiArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-gold-500" />
                   </Link>
                 </li>
               ))}
@@ -126,37 +134,43 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wide mb-5">Contact</h4>
+            <h4 className="text-sm font-bold text-corporate-900 uppercase tracking-widest mb-6 font-sans">
+              Contact
+            </h4>
             <div className="space-y-4">
               <a
                 href="mailto:treishvaamgroup@gmail.com"
-                className="flex items-center gap-3 text-slate-400 hover:text-accent-400 transition-colors text-sm group"
+                className="flex items-center gap-3 text-corporate-600 hover:text-gold-600 transition-colors text-sm group font-medium"
               >
-                <FiMail className="w-5 h-5 flex-shrink-0" />
+                <FiMail className="w-4 h-4 flex-shrink-0 text-gold-500" />
                 <span>treishvaamgroup@gmail.com</span>
               </a>
               <a
                 href="tel:+918178529633"
-                className="flex items-center gap-3 text-slate-400 hover:text-accent-400 transition-colors text-sm group"
+                className="flex items-center gap-3 text-corporate-600 hover:text-gold-600 transition-colors text-sm group font-medium"
               >
-                <FiPhone className="w-5 h-5 flex-shrink-0" />
+                <FiPhone className="w-4 h-4 flex-shrink-0 text-gold-500" />
                 <span>+91 81785 29633</span>
               </a>
-              <div className="flex items-start gap-3 text-slate-400 text-sm">
-                <FiMapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>Corporate Office<br />Bangalore, India</span>
+              <div className="flex items-start gap-3 text-corporate-600 text-sm font-medium">
+                <FiMapPin className="w-4 h-4 flex-shrink-0 mt-0.5 text-gold-500" />
+                <span>
+                  Corporate Office
+                  <br />
+                  Bangalore, India
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-slate-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+        <div className="border-t border-corporate-200 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-corporate-500 font-sans">
             <p>
               &copy; {currentYear} Treishvaam Group. All rights reserved.
             </p>
-            <p>
+            <p className="font-serif italic tracking-wide text-corporate-600">
               Driving Global Excellence.
             </p>
           </div>
@@ -164,7 +178,7 @@ export default function Footer() {
       </div>
 
       {/* Floating Top Button */}
-      <ScrollToTopButton className="fixed bottom-8 right-8 hidden lg:flex" />
+      <ScrollToTopButton className="fixed bottom-8 right-8 hidden lg:flex shadow-glass border border-white/50 bg-white/80 hover:bg-gold-50 text-corporate-900" />
     </footer>
   )
 }
