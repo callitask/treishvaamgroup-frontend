@@ -68,21 +68,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* 4. Bottom Glass Ticker */}
-      <div className="absolute bottom-0 w-full border-t border-white/20 bg-white/60 backdrop-blur-md z-20">
-        <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-corporate-900">
-          <div className="flex gap-12 text-sm font-medium">
-             <span><span className="text-gold-600 font-serif italic mr-2">Latest:</span> Solar Dehydration Plant initialization in Phase 1.</span>
-          </div>
-          <div className="hidden md:flex gap-8 text-[10px] uppercase tracking-widest text-corporate-500 font-bold">
-            <span>Mumbai</span>
-            <span>Dubai</span>
-            <span>London</span>
-            <span>Singapore</span>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

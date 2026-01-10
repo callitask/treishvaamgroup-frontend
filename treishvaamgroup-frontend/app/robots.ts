@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.treishvaamgroup.com';
+// Fallback to non-www canonical domain
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://treishvaamgroup.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {

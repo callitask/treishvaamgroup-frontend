@@ -16,8 +16,8 @@ export default function SnapshotSection() {
 
   const stats = [
     { label: 'Years of Excellence', value: 25 },
-    { label: 'Global Offices', value: 45 },
-    { label: 'Employees Worldwide', value: 5000 },
+    { label: 'Core Sectors', value: 3 },
+    { label: 'Expert Consultants', value: 150 },
     { label: 'Client Satisfaction', value: 99 },
   ]
 

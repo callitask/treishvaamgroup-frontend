@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
-// Define the base URL from env or fallback
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.treishvaamgroup.com';
+// Define the base URL from env or fallback (Non-WWW Canonical)
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://treishvaamgroup.com';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://treishfin.treishvaamgroup.com/api/v1';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -9,10 +9,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     '',
     '/about',
-    '/sectors',
+    '/businesses',
     '/sustainability',
-    '/news',
+    '/newsroom',
+    '/investors',
+    '/careers',
     '/contact',
+    '/privacy',
+    '/terms',
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString(),
@@ -22,7 +26,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     // 2. Fetch dynamic blog posts from backend
-    // Adjust the endpoint if your API path for listing posts is different
     const response = await fetch(`${API_URL}/posts?page=0&size=100`, {
       next: { revalidate: 3600 }, // Cache for 1 hour
     });
@@ -37,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // 3. Map posts to sitemap entries
     const postRoutes = posts.map((post: any) => ({
-      url: `${BASE_URL}/news/${post.slug || post.id}`,
+      url: `${BASE_URL}/newsroom/${post.slug || post.id}`,
       lastModified: post.updatedAt || post.createdAt || new Date().toISOString(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
