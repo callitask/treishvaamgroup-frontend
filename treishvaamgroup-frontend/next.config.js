@@ -3,11 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
-  // Cloudflare Pages requires unoptimized images unless you use a paid loader
   images: {
     domains: ['treishfin.treishvaamgroup.com', 'treishvaamgroup.com', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
-    unoptimized: true,
+    unoptimized: true, // Required for Cloudflare Pages standard hosting
   },
   headers: async () => {
     return [
@@ -33,6 +32,10 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow'
           }
         ],
       },

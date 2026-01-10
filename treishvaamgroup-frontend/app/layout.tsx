@@ -7,7 +7,6 @@ import Footer from '@/components/layout/Footer'
 import ThirdPartyScripts from '@/components/ThirdPartyScripts'
 
 // --- 1. OPTIMIZED FONTS ---
-// We load both Inter (Sans) and Playfair Display (Serif) for that "Enterprise" feel
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
@@ -20,9 +19,15 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
+// Define the Canonical Base URL
+const BASE_URL = 'https://treishvaamgroup.com';
+
 // --- 2. ENTERPRISE METADATA CONFIGURATION ---
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.treishvaamgroup.com'), // Replace with actual production domain
+  metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: 'Treishvaam Group | Global Enterprise Architecture',
     template: '%s | Treishvaam Group'
@@ -43,34 +48,31 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // This ensures the logo appears in the Browser Tab
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/logo192.webp', // Using the webp logo you uploaded for Apple devices
+    apple: '/logo192.webp',
     other: {
       rel: 'apple-touch-icon-precomposed',
       url: '/logo192.webp',
     },
   },
-  // Open Graph = How it looks on LinkedIn/Facebook/WhatsApp
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.treishvaamgroup.com',
+    url: BASE_URL,
     siteName: 'Treishvaam Group',
     title: 'Treishvaam Group | Architecting Value Chains',
     description: 'Fusing digital efficiency with tangible assets. Explore our verticals in Finance, Agriculture, and Workforce.',
     images: [
       {
-        url: '/logo512.webp', // Using your large logo as the preview image
+        url: '/logo512.webp',
         width: 512,
         height: 512,
         alt: 'Treishvaam Group Emblem',
       },
     ],
   },
-  // Twitter Card data
   twitter: {
     card: 'summary_large_image',
     title: 'Treishvaam Group',
@@ -80,7 +82,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#B08D55', // The Gold color for mobile browser bars
+  themeColor: '#B08D55',
 }
 
 export default function RootLayout({
@@ -90,26 +92,25 @@ export default function RootLayout({
 }) {
   
   // --- 3. STRUCTURED DATA (JSON-LD) ---
-  // This is the specific code Google/AI needs to verify your Brand, Logo, and Founder.
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Corporation",
     "name": "Treishvaam Group",
     "alternateName": "Treishvaam",
-    "url": "https://www.treishvaamgroup.com",
-    "logo": "https://www.treishvaamgroup.com/logo512.webp", // CRITICAL: This puts the logo in Google Search
+    "url": BASE_URL, // Updated to non-www canonical
+    "logo": `${BASE_URL}/logo512.webp`,
     "founder": {
       "@type": "Person",
       "name": "Amitsagar Kandpal"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/treishvaam-group", // Replace with actual
-      "https://twitter.com/treishvaam", // Replace with actual
-      "https://www.instagram.com/treishvaam" // Replace with actual
+      "https://www.linkedin.com/company/treishvaam-group",
+      "https://twitter.com/treishvaam",
+      "https://www.instagram.com/treishvaam"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "", // Add phone if available
+      "telephone": "",
       "contactType": "customer service",
       "areaServed": "Global",
       "availableLanguage": "English"
@@ -119,7 +120,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
-        {/* Inject Schema for AI/Google */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
