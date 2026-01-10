@@ -19,7 +19,7 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-// Define the Canonical Base URL
+// Define the Canonical Base URL (Non-WWW)
 const BASE_URL = 'https://treishvaamgroup.com';
 
 // --- 2. ENTERPRISE METADATA CONFIGURATION ---
@@ -97,14 +97,14 @@ export default function RootLayout({
     "@type": "Corporation",
     "name": "Treishvaam Group",
     "alternateName": "Treishvaam",
-    "url": BASE_URL, // Updated to non-www canonical
+    "url": BASE_URL,
     "logo": `${BASE_URL}/logo512.webp`,
     "founder": {
       "@type": "Person",
       "name": "Amitsagar Kandpal"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/treishvaam-group",
+      "https://www.linkedin.com/in/treishvaamgroup",
       "https://twitter.com/treishvaam",
       "https://www.instagram.com/treishvaam"
     ],

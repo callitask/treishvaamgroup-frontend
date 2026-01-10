@@ -29,7 +29,7 @@ export default function Footer() {
   }
 
   const socialLinks = [
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/treishvaamgroup', label: 'LinkedIn' },
     { icon: FaTwitter, href: '#', label: 'Twitter' },
     { icon: FaFacebook, href: '#', label: 'Facebook' },
   ]

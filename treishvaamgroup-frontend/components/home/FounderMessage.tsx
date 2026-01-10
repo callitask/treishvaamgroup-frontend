@@ -20,8 +20,7 @@ export default function FounderMessage() {
     "description": "Visionary entrepreneur and architect of the Treishvaam Group ecosystem, focusing on finance, agriculture, and human capital.",
     "image": "https://treishvaamgroup.com/amitsagar-kandpal-photo.png",
     "sameAs": [
-      "https://www.linkedin.com/in/amitsagar-kandpal", // UPDATE THIS WITH REAL LINK
-      "https://twitter.com/amitsagark" // UPDATE THIS WITH REAL LINK
+      "https://www.linkedin.com/in/amitsagarkandpal"
     ]
   }
 
