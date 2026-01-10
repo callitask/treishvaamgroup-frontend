@@ -99,21 +99,28 @@ export default function RootLayout({
     "alternateName": "Treishvaam",
     "url": BASE_URL,
     "logo": `${BASE_URL}/logo512.webp`,
-    "founder": {
-      "@type": "Person",
-      "name": "Amitsagar Kandpal"
-    },
+    "email": "treishvaamgroup@gmail.com",
     "sameAs": [
       "https://www.linkedin.com/in/treishvaamgroup",
-      "https://twitter.com/treishvaam",
-      "https://www.instagram.com/treishvaam"
+      "https://twitter.com/treishvaamgroup",
+      "https://www.instagram.com/treishvaamgroup"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "",
       "contactType": "customer service",
+      "email": "treishvaamgroup@gmail.com",
       "areaServed": "Global",
       "availableLanguage": "English"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Amitsagar Kandpal",
+      "email": "treishvaam@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/amitsagarkandpal",
+        "https://twitter.com/treishvaam",
+        "https://www.instagram.com/treishvaam"
+      ]
     }
   }
 
