@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 
-// Define the base URL from env or fallback (Non-WWW Canonical)
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://treishvaamgroup.com';
+// Define the base URL explicitly to match the "Remove WWW" Cloudflare rule.
+// We prioritize the non-www domain to prevent 301 redirect chains in the sitemap.
+const BASE_URL = 'https://treishvaamgroup.com';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://treishfin.treishvaamgroup.com/api/v1';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
