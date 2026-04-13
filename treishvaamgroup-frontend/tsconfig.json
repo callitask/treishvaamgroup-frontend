@@ -1,3 +1,38 @@
+/*
+ * AI-CONTEXT:
+ *
+ * Purpose:
+ * - TypeScript configuration for the Parent Website.
+ *
+ * Scope:
+ * - Defines compiler options, path aliases, and strictness levels for the Next.js App Router.
+ *
+ * Critical Dependencies:
+ * - Frontend: Next.js 15 build pipeline relies heavily on this.
+ *
+ * Security Constraints:
+ * - N/A for this configuration file.
+ *
+ * Non-Negotiables:
+ * - Path alias `@/*` must map to `./*` to support enterprise absolute imports.
+ *
+ * Change Intent:
+ * - Silencing TypeScript 6.0 deprecation warnings for `baseUrl` to unblock Next.js 15 production builds.
+ *
+ * Future AI Guidance:
+ * - Do not remove `"ignoreDeprecations": "6.0"` until `baseUrl` is fully migrated to a new standard if forced by TS 7.0.
+ *
+ * IMMUTABLE CHANGE HISTORY (DO NOT DELETE):
+ * - EDITED:
+ * • Added `"ignoreDeprecations": "6.0"` to compilerOptions.
+ * • Why the edit was required: Next.js 15 enforces zero TS errors, and TS 5.5+ flags `baseUrl` as deprecated.
+ * • What behavior must remain unchanged: Path aliases and existing compiler options.
+ *
+ * - DO-NOT-DELETE RULE:
+ * This IMMUTABLE CHANGE HISTORY section must never be deleted,
+ * truncated, rewritten, or regenerated.
+ * Future AI must append only.
+ */
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -14,6 +49,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["./*"]
     },
