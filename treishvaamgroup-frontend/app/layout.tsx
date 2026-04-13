@@ -5,8 +5,6 @@ import '@/app/globals.css'
 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FooterNewsletter from '@/components/layout/FooterNewsletter'
-import { ThemeProvider } from '@/components/theme-provider'
 import ThirdPartyScripts from '@/components/ThirdPartyScripts'
 
 // Fonts
@@ -117,22 +115,19 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased flex flex-col selection:bg-blue-100 selection:text-blue-900">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          {/* Header/Navbar */}
-          <Navbar />
-          
-          {/* Main Content Area */}
-          <main className="flex-grow pt-20"> {/* pt-20 offsets the fixed navbar */}
-            {children}
-          </main>
-          
-          {/* Footer Area */}
-          <FooterNewsletter />
-          <Footer />
-          
-          {/* Scripts loaded at the end of body */}
-          <ThirdPartyScripts />
-        </ThemeProvider>
+        {/* Header/Navbar */}
+        <Navbar />
+        
+        {/* Main Content Area */}
+        <main className="flex-grow pt-20"> {/* pt-20 offsets the fixed navbar */}
+          {children}
+        </main>
+        
+        {/* Footer Area */}
+        <Footer />
+        
+        {/* Scripts loaded at the end of body */}
+        <ThirdPartyScripts />
       </body>
     </html>
   )
