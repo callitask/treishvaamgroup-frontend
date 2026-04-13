@@ -1,104 +1,104 @@
-'use client'
+/**
+ * AI-CONTEXT:
+ *
+ * Purpose:
+ * - Global navigation header for the Parent domain.
+ * - CRITICAL SEO FUNCTION: Acts as the primary PageRank distributor to isolated subdomains.
+ *
+ * Scope:
+ * - Renders navigation links, handles mobile menu state, and enforces the enterprise link graph.
+ *
+ * Critical Dependencies:
+ * - Frontend: Shared across all parent domain routes.
+ * - SEO: Googlebot relies on these absolute links to discover and index treishfin and tagro.
+ *
+ * Security Constraints:
+ * - Subdomain links MUST be absolute HTTPS URLs.
+ * - No rel="nofollow" attributes may be added to internal enterprise links.
+ *
+ * Non-Negotiables:
+ * - The links to Treishvaam Finance and Treishvaam Agro must remain permanently crawlable in the DOM.
+ *
+ * Change Intent:
+ * - Hardcoding the Link Graph architecture to flow indexing authority to subdomains.
+ *
+ * Future AI Guidance:
+ * - Do not remove the absolute links to the subdomains. They are the only mechanism keeping 
+ * the subdomains from falling into Google's "Crawled - currently not indexed" orphan bucket.
+ *
+ * IMMUTABLE CHANGE HISTORY (DO NOT DELETE):
+ * - EDITED:
+ * • Added absolute cross-domain links for Treishvaam Finance and Treishvaam Agro.
+ * • Why the edit was required: Subdomains were suffering from Subdomain Isolation penalty in GSC.
+ * • What behavior must remain unchanged: The absolute URL structures pointing to the subdomains.
+ *
+ * - DO-NOT-DELETE RULE:
+ * This IMMUTABLE CHANGE HISTORY section must never be deleted,
+ * truncated, rewritten, or regenerated.
+ * Future AI must append only.
+ */
 
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { FiMenu, FiX } from 'react-icons/fi'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
-      <nav className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="font-serif font-bold text-2xl text-corporate-900">T</div>
-          <div className="flex flex-col">
-             <span className="font-serif font-bold tracking-tight text-corporate-900 leading-none">TREISHVAAM</span>
-             <span className="text-[0.6rem] uppercase tracking-[0.3em] text-gold-500">Group</span>
+    <nav className="fixed w-full z-50 bg-white border-b border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20">
+          <div className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex items-center gap-3">
+              <Image src="/logo512.webp" alt="Treishvaam Group Logo" width={48} height={48} className="w-12 h-12" priority />
+              <span className="font-bold text-2xl tracking-tight text-gray-900">Treishvaam Group</span>
+            </Link>
           </div>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
-          <NavLink href="/about" label="Vision" />
-          <NavLink href="/businesses" label="Our Verticals" />
-          <NavLink href="/investors" label="Partners" />
-          <NavLink href="/sustainability" label="Sustainability" />
           
-          {/* CRITICAL ADSENSE LINK: Cross-Domain Link to Finance */}
-          <a 
-            href="https://treishfin.treishvaamgroup.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-xs font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors relative group"
-          >
-            Finance
-            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all group-hover:w-full"></span>
-          </a>
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/about" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">About</Link>
+            <Link href="/businesses" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">Businesses</Link>
+            
+            {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
+            <a href="https://treishfin.treishvaamgroup.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Finance</a>
+            <a href="https://tagro.treishvaamgroup.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Agro</a>
+            
+            <Link href="/sustainability" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">Sustainability</Link>
+            <Link href="/contact" className="px-5 py-2.5 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors font-medium">Contact Us</Link>
+          </div>
 
-          <Link href="/contact" className="px-6 py-2 border border-corporate-900 text-corporate-900 text-xs font-bold uppercase tracking-widest hover:bg-corporate-900 hover:text-white transition-all">
-            Contact
-          </Link>
+          <div className="md:hidden flex items-center">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
 
-        {/* Mobile Toggle */}
-        <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-corporate-900">
-          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu - Implemented matching your design logic */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 py-6 px-6 flex flex-col gap-6">
-          <MobileNavLink href="/about" label="Vision" onClick={() => setIsOpen(false)} />
-          <MobileNavLink href="/businesses" label="Our Verticals" onClick={() => setIsOpen(false)} />
-          <MobileNavLink href="/investors" label="Partners" onClick={() => setIsOpen(false)} />
-          <MobileNavLink href="/sustainability" label="Sustainability" onClick={() => setIsOpen(false)} />
-          
-          <a 
-            href="https://treishfin.treishvaamgroup.com"
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500"
-            onClick={() => setIsOpen(false)}
-          >
-            Finance Portal
-          </a>
-
-          <Link 
-            href="/contact" 
-            className="px-6 py-3 border border-corporate-900 text-corporate-900 text-xs font-bold uppercase tracking-widest hover:bg-corporate-900 hover:text-white transition-all text-center"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
+        <div className="md:hidden bg-white border-b border-gray-100 shadow-lg">
+          <div className="px-4 pt-2 pb-4 space-y-1 sm:px-3 flex flex-col">
+            <Link href="/about" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">About</Link>
+            <Link href="/businesses" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Businesses</Link>
+            
+            {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
+            <a href="https://treishfin.treishvaamgroup.com" className="block px-3 py-3 text-base font-medium text-blue-700 hover:bg-blue-50 rounded-md">Treishvaam Finance ↗</a>
+            <a href="https://tagro.treishvaamgroup.com" className="block px-3 py-3 text-base font-medium text-green-700 hover:bg-green-50 rounded-md">Treishvaam Agro ↗</a>
+            
+            <Link href="/sustainability" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Sustainability</Link>
+            <Link href="/contact" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Contact Us</Link>
+          </div>
         </div>
       )}
-    </header>
-  )
-}
+    </nav>
+  );
+};
 
-function NavLink({ href, label }: { href: string, label: string }) {
-  return (
-    <Link href={href} className="text-xs font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors relative group">
-      {label}
-      <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all group-hover:w-full"></span>
-    </Link>
-  )
-}
-
-function MobileNavLink({ href, label, onClick }: { href: string, label: string, onClick: () => void }) {
-  return (
-    <Link href={href} onClick={onClick} className="text-sm font-bold uppercase tracking-widest text-corporate-900 hover:text-gold-500 transition-colors">
-      {label}
-    </Link>
-  )
-}
+export default Navbar;
