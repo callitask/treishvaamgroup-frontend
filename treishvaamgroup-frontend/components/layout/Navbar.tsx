@@ -1,3 +1,4 @@
+"use client";
 /**
  * AI-CONTEXT:
  *
@@ -20,17 +21,23 @@
  * - The links to Treishvaam Finance and Treishvaam Agro must remain permanently crawlable in the DOM.
  *
  * Change Intent:
- * - Hardcoding the Link Graph architecture to flow indexing authority to subdomains.
+ * - Resolving Next.js build failure by explicitly marking as a Client Component.
  *
  * Future AI Guidance:
  * - Do not remove the absolute links to the subdomains. They are the only mechanism keeping 
  * the subdomains from falling into Google's "Crawled - currently not indexed" orphan bucket.
+ * - Must remain a Client Component due to interactive mobile menu (`useState`).
  *
  * IMMUTABLE CHANGE HISTORY (DO NOT DELETE):
  * - EDITED:
  * • Added absolute cross-domain links for Treishvaam Finance and Treishvaam Agro.
  * • Why the edit was required: Subdomains were suffering from Subdomain Isolation penalty in GSC.
  * • What behavior must remain unchanged: The absolute URL structures pointing to the subdomains.
+ *
+ * - EDITED (FIX):
+ * • Added "use client"; directive at the top of the file.
+ * • Why the edit was required: Next.js 15 App Router failed to build because `useState` was used in a Server Component.
+ * • What behavior must remain unchanged: SEO link graph remains intact (SSR still processes initial HTML for Googlebot).
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
