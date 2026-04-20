@@ -38,6 +38,10 @@
  * • Added "use client"; directive at the top of the file.
  * • Why the edit was required: Next.js 15 App Router failed to build because `useState` was used in a Server Component.
  * • What behavior must remain unchanged: SEO link graph remains intact (SSR still processes initial HTML for Googlebot).
+ * * - EDITED:
+ * • Updated the Treishvaam Finance external link to the new apex domain: treishvaamfinance.com.
+ * • Why the edit was required: Aiding SEO migration to prevent link equity loss via 301 redirect chains.
+ * • What behavior must remain unchanged: Links must remain absolute and crawler-accessible.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -50,7 +54,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, useState] = React.useState(false);
 
   return (
     <nav className="fixed w-full z-50 bg-white border-b border-gray-100 shadow-sm">
@@ -68,7 +72,7 @@ const Navbar = () => {
             <Link href="/businesses" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">Businesses</Link>
             
             {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
-            <a href="https://treishfin.treishvaamgroup.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Finance</a>
+            <a href="https://treishvaamfinance.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Finance</a>
             <a href="https://tagro.treishvaamgroup.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Agro</a>
             
             <Link href="/sustainability" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">Sustainability</Link>
@@ -96,7 +100,7 @@ const Navbar = () => {
             <Link href="/businesses" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Businesses</Link>
             
             {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
-            <a href="https://treishfin.treishvaamgroup.com" className="block px-3 py-3 text-base font-medium text-blue-700 hover:bg-blue-50 rounded-md">Treishvaam Finance ↗</a>
+            <a href="https://treishvaamfinance.com" className="block px-3 py-3 text-base font-medium text-blue-700 hover:bg-blue-50 rounded-md">Treishvaam Finance ↗</a>
             <a href="https://tagro.treishvaamgroup.com" className="block px-3 py-3 text-base font-medium text-green-700 hover:bg-green-50 rounded-md">Treishvaam Agro ↗</a>
             
             <Link href="/sustainability" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Sustainability</Link>

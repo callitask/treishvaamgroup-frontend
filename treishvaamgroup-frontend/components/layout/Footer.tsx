@@ -29,6 +29,10 @@
  * • Added absolute cross-domain links in the "Our Businesses" section.
  * • Why the edit was required: Subdomains were suffering from Subdomain Isolation penalty in GSC.
  * • What behavior must remain unchanged: The absolute URL structures pointing to the subdomains.
+ * * - EDITED:
+ * • Updated the Treishvaam Finance external link to the new apex domain: treishvaamfinance.com.
+ * • Why the edit was required: Aiding SEO migration to prevent link equity loss via 301 redirect chains.
+ * • What behavior must remain unchanged: Links must remain absolute and crawler-accessible.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -66,7 +70,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-6">Our Businesses</h3>
             <ul className="space-y-4">
               {/* SEO CRITICAL: Absolute cross-domain links */}
-              <li><a href="https://treishfin.treishvaamgroup.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Finance <span className="text-xs opacity-50">↗</span></a></li>
+              <li><a href="https://treishvaamfinance.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Finance <span className="text-xs opacity-50">↗</span></a></li>
               <li><a href="https://tagro.treishvaamgroup.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Agro <span className="text-xs opacity-50">↗</span></a></li>
               <li><span className="text-gray-600 cursor-not-allowed">Treishvaam Hiring (Coming Soon)</span></li>
             </ul>
