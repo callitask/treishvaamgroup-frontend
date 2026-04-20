@@ -43,6 +43,11 @@
  * • Why the edit was required: Aiding SEO migration to prevent link equity loss via 301 redirect chains.
  * • What behavior must remain unchanged: Links must remain absolute and crawler-accessible.
  *
+ * - EDITED (HOTFIX):
+ * • Corrected React `useState` destructuring syntax from `[isOpen, useState]` to `[isOpen, setIsOpen]`.
+ * • Why the edit was required: Build failed due to `setIsOpen` being undefined in the mobile menu button toggle.
+ * • What behavior must remain unchanged: SEO link graph and mobile menu interactivity.
+ *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
  * truncated, rewritten, or regenerated.
@@ -54,7 +59,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Navbar = () => {
-  const [isOpen, useState] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="fixed w-full z-50 bg-white border-b border-gray-100 shadow-sm">
