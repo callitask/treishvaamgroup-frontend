@@ -1,3 +1,40 @@
+/**
+ * AI-CONTEXT:
+ *
+ * Purpose:
+ * - Root layout file for the Parent Website (treishvaamgroup.com).
+ * - Handles global HTML structure, fonts, Third-Party Scripts, and centralized SEO Knowledge Graph injection.
+ *
+ * Scope:
+ * - Wraps all pages with standard UI (Navbar, Footer).
+ * - Renders the global JSON-LD schema for AI & Crawler entity resolution natively via React.
+ *
+ * Critical Dependencies:
+ * - Frontend: Navbar, Footer, ThirdPartyScripts components.
+ *
+ * Security Constraints:
+ * - No hardcoded API keys.
+ *
+ * Non-Negotiables:
+ * - JSON-LD payload must remain fully compliant with Schema.org standards.
+ *
+ * Change Intent:
+ * - Expanding Enterprise JSON-LD schema globally to fix entity resolution and typo tolerance.
+ *
+ * Future AI Guidance:
+ * - Do not remove the structured data script tag. If adding new aliases, append them to the `alternateName` array.
+ *
+ * IMMUTABLE CHANGE HISTORY (DO NOT DELETE):
+ * - EDITED:
+ * • Added `alternateName` arrays for Treishvaam Group and Amitsagar Kandpal within the `dangerouslySetInnerHTML` JSON payload.
+ * • Why: To guarantee deterministic entity mapping for search engines and AI agents regardless of spelling errors in user prompts.
+ *
+ * - DO-NOT-DELETE RULE:
+ * This IMMUTABLE CHANGE HISTORY section must never be deleted,
+ * truncated, rewritten, or regenerated.
+ * Future AI must append only.
+ */
+
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 // @ts-ignore: Next.js Webpack handles CSS imports natively, bypassing strict TS module checks.
@@ -91,6 +128,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Treishvaam Group",
+              "alternateName": ["Treishvam Group", "Treshvam Group", "Treishvaam Enterprise", "Treishvaam"],
               "url": "https://treishvaamgroup.com",
               "logo": "https://treishvaamgroup.com/logo512.webp",
               "description": "Treishvaam Group is a diversified enterprise innovating across finance, agriculture, and technology.",
@@ -98,6 +136,7 @@ export default function RootLayout({
               "founder": {
                 "@type": "Person",
                 "name": "Amitsagar Kandpal",
+                "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar"],
                 "url": "https://linkedin.com/in/amitsagarkandpal"
               },
               "contactPoint": {
