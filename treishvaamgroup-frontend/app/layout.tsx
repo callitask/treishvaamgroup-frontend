@@ -28,6 +28,9 @@
  * - EDITED:
  * • Added `alternateName` arrays for Treishvaam Group and Amitsagar Kandpal within the `dangerouslySetInnerHTML` JSON payload.
  * • Why: To guarantee deterministic entity mapping for search engines and AI agents regardless of spelling errors in user prompts.
+ * - EDITED (Current Phase):
+ * • Expanded the Founder `alternateName` array to include the brand variations ("Treishvaam", "Treishvam", "Trishvam").
+ * • Why: Semantic identity fusion. User queries for "Trishvam" must directly associate with the founder across all NLP models.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -128,7 +131,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Treishvaam Group",
-              "alternateName": ["Treishvam Group", "Treshvam Group", "Treishvaam Enterprise", "Treishvaam"],
+              "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Trishvam"],
               "url": "https://treishvaamgroup.com",
               "logo": "https://treishvaamgroup.com/logo512.webp",
               "description": "Treishvaam Group is a diversified enterprise innovating across finance, agriculture, and technology.",
@@ -136,7 +139,7 @@ export default function RootLayout({
               "founder": {
                 "@type": "Person",
                 "name": "Amitsagar Kandpal",
-                "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar"],
+                "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
                 "url": "https://linkedin.com/in/amitsagarkandpal"
               },
               "contactPoint": {
