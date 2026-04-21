@@ -48,21 +48,26 @@
 
 ## 4. DOMAIN-SPECIFIC HISTORIES
 
-### Treishvaam Finance (`treishfin`)
+### Treishvaam Finance (`treishfin` / `treishvaamfinance.com`)
 - **Tech Stack:** React SPA.
 - **Challenge:** Client-Side Rendering (CSR) historically causes indexing delays.
 - **Rich Results:** Successfully passing 4 valid items (Local Business, Organization, etc.).
-- **Current Status:** Awaiting re-crawl via Parent Domain Link Graph to overcome "Crawled - currently not indexed".
+- **Current Status:** Subdomain migrated to apex (`treishvaamfinance.com`). Awaiting re-crawl via Parent Domain Link Graph.
 
-### Treishvaam Agro (`tagro`)
+### Treishvaam Agro (`tagro` / `treishvaamagro.com`)
 - **Tech Stack:** Next.js (SSR).
 - **Challenge:** Initially lacked structured JSON-LD schema, resulting in 0 Rich Results.
-- **Current Status:** Benefiting from Parent Domain Link Graph. Schema injection slated for future Next.js `layout.tsx` updates.
+- **Current Status:** Subdomain migrated to apex (`treishvaamagro.com`). Benefiting from Parent Domain Link Graph.
 
 ### Treishvaam Group (Parent)
 - **Tech Stack:** Next.js.
 - **Current Status:** Successfully indexed.
 - **Role:** Acts as the "Authority Umbrella." The sole provider of PageRank to the enterprise subdomains via explicit global navigation links.
+
+## 5. 0ms TBT & ZERO-TRUST TAG MANAGEMENT
+**Issue:** Hardcoding Google Analytics, Ads, or AdSense scripts directly into `index.html` or `layout.tsx` blocks the main thread, resulting in catastrophic Total Blocking Time (TBT) penalties in Google Lighthouse and preventing Googlebot from rendering the page efficiently.
+**Current Validated Method:** All active third-party tags must be loaded via the **Interaction/Idle Strategy** (`ThirdPartyScripts` component). 
+*Rule:* Scripts are ONLY injected when a user interacts (`scroll`, `mousemove`) or after a 7-second fallback. Furthermore, all IDs MUST be injected via `NEXT_PUBLIC_*` or `REACT_APP_*` environment variables to preserve Zero-Trust infrastructure security.
 
 ## IMMUTABLE CHANGE HISTORY (DO NOT DELETE)
 
@@ -71,9 +76,17 @@
   • Reason: To resolve "Crawled - currently not indexed" by passing domain authority from the indexed apex domain to the orphaned subdomains.
   • Files Modified: Parent `Navbar.tsx` and `Footer.tsx`.
 
+- EDITED (FIX): Next.js App Router Strictness Overrides
+  • Date: 2026-04-13
+  • Reason: Next.js 15 build pipeline failed during Link Graph implementation. Added `"use client"` to Navbar, removed non-existent component imports from `layout.tsx`, and bypassed TS 6.0 `baseUrl` deprecations in `tsconfig.json`.
+
 - REMOVED: Worker-based dynamic sitemap generation
   • Date: Prior Phase
   • Reason: Caused GSC attribution failures. Replaced by static index files.
 
 - REJECTED ATTEMPT: Heavy HTML Materializer for React SPA
   • Reason: Over-engineered solution that did not address the root indexing gatekeeper (Domain Authority / PageRank). Rich results were already passing; authority was the missing link.
+
+- EDITED: 0ms TBT & Zero-Trust Tag Management Mandate
+  • Date: Current Phase
+  • Reason: Enforced interaction-based script loading across all frontends to guarantee 100/100 Lighthouse Performance scores while securing tracking IDs behind environment variables.
