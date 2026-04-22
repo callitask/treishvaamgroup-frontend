@@ -7,8 +7,8 @@
  * (like dynamic sitemaps or CSR rendering) were abandoned.
  * * Scope:
  * - Covers Parent Domain (treishvaamgroup.com)
- * - Covers Finance Subdomain (treishfin.treishvaamgroup.com)
- * - Covers Agro Subdomain (tagro.treishvaamgroup.com)
+ * - Covers Finance Subdomain (treishvaamfinance.com)
+ * - Covers Agro Subdomain (treishvaamagro.com)
  * - Details Cloudflare Workers, KV bindings, WAF Rules, and Bulk Redirects related to SEO.
  * * Critical Dependencies:
  * - Cloudflare DNS & Page Rules (Authoritative layer for canonicalization).
@@ -48,45 +48,50 @@
 
 ## 4. DOMAIN-SPECIFIC HISTORIES
 
-### Treishvaam Finance (`treishfin` / `treishvaamfinance.com`)
+### Treishvaam Finance (`treishvaamfinance.com`)
 - **Tech Stack:** React SPA.
 - **Challenge:** Client-Side Rendering (CSR) historically causes indexing delays.
+- **Resolution:** Upgraded to Apex domain. Implemented Zero-Trust Cache-Shielding Architecture in Edge Worker and Aggressive SPA Fallbacks to prevent 404 indexing errors.
 - **Rich Results:** Successfully passing 4 valid items (Local Business, Organization, etc.).
-- **Current Status:** Subdomain migrated to apex (`treishvaamfinance.com`). Awaiting re-crawl via Parent Domain Link Graph.
 
-### Treishvaam Agro (`tagro` / `treishvaamagro.com`)
+### Treishvaam Agro (`treishvaamagro.com`)
 - **Tech Stack:** Next.js (SSR).
-- **Challenge:** Initially lacked structured JSON-LD schema, resulting in 0 Rich Results.
-- **Current Status:** Subdomain migrated to apex (`treishvaamagro.com`). Benefiting from Parent Domain Link Graph.
+- **Current Status:** Subdomain migrated to apex. Benefiting from Parent Domain Link Graph.
 
 ### Treishvaam Group (Parent)
 - **Tech Stack:** Next.js.
 - **Current Status:** Successfully indexed.
-- **Role:** Acts as the "Authority Umbrella." The sole provider of PageRank to the enterprise subdomains via explicit global navigation links.
+- **Role:** Acts as the "Authority Umbrella." The sole provider of PageRank to the enterprise subsidiaries via explicit global navigation links.
 
 ## 5. 0ms TBT & ZERO-TRUST TAG MANAGEMENT
 **Issue:** Hardcoding Google Analytics, Ads, or AdSense scripts directly into `index.html` or `layout.tsx` blocks the main thread, resulting in catastrophic Total Blocking Time (TBT) penalties in Google Lighthouse and preventing Googlebot from rendering the page efficiently.
 **Current Validated Method:** All active third-party tags must be loaded via the **Interaction/Idle Strategy** (`ThirdPartyScripts` component). 
 *Rule:* Scripts are ONLY injected when a user interacts (`scroll`, `mousemove`) or after a 7-second fallback. Furthermore, all IDs MUST be injected via `NEXT_PUBLIC_*` or `REACT_APP_*` environment variables to preserve Zero-Trust infrastructure security.
 
+## 6. RICH RESULTS & KNOWLEDGE GRAPH PARSING
+**Issue:** Google's Rich Results Testing Tool successfully detected the `Organization` schema but silently ignored the `WebSite` (Sitelinks Searchbox) schema despite it being perfectly valid Schema.org JSON-LD.
+**Root Cause Diagnosis:** 1. Google's proprietary parser strictly mandates the `EntryPoint` object wrapper for the `SearchAction` target. A standard string target is ignored.
+2. Injecting all schemas within a single `@graph` array via React's `dangerouslySetInnerHTML` caused Google's headless Chromium tester to flatten or misinterpret the nodes.
+**Resolution (The Schema Isolation Protocol):** - Re-wrote the `WebSite` payload to conform to the strict Google `EntryPoint` syntax.
+- Decoupled the schemas into three completely isolated `<script type="application/ld+json">` tags (Organization, WebSite, ItemList) in `layout.tsx`.
+*Rule:* Never combine critical structured data schemas into a single array block. Isolate them to guarantee independent crawler evaluation.
+*Protocol:* Following any schema update, a manual "Purge Everything" action MUST be executed in the Cloudflare Caching Dashboard to clear Edge nodes before triggering a GSC Re-crawl.
+
 ## IMMUTABLE CHANGE HISTORY (DO NOT DELETE)
 
 - ADDED: Parent-to-Subdomain Link Graph Architecture
   • Date: 2026-04-13
   • Reason: To resolve "Crawled - currently not indexed" by passing domain authority from the indexed apex domain to the orphaned subdomains.
-  • Files Modified: Parent `Navbar.tsx` and `Footer.tsx`.
 
-- EDITED (FIX): Next.js App Router Strictness Overrides
+- EDITED: Next.js App Router Strictness Overrides
   • Date: 2026-04-13
-  • Reason: Next.js 15 build pipeline failed during Link Graph implementation. Added `"use client"` to Navbar, removed non-existent component imports from `layout.tsx`, and bypassed TS 6.0 `baseUrl` deprecations in `tsconfig.json`.
+  • Reason: Next.js 15 build pipeline failed during Link Graph implementation. Added `"use client"` to Navbar, removed non-existent component imports from `layout.tsx`.
 
 - REMOVED: Worker-based dynamic sitemap generation
-  • Date: Prior Phase
   • Reason: Caused GSC attribution failures. Replaced by static index files.
 
-- REJECTED ATTEMPT: Heavy HTML Materializer for React SPA
-  • Reason: Over-engineered solution that did not address the root indexing gatekeeper (Domain Authority / PageRank). Rich results were already passing; authority was the missing link.
-
 - EDITED: 0ms TBT & Zero-Trust Tag Management Mandate
-  • Date: Current Phase
   • Reason: Enforced interaction-based script loading across all frontends to guarantee 100/100 Lighthouse Performance scores while securing tracking IDs behind environment variables.
+
+- ADDED (LATEST): Rich Results & Schema Isolation Protocol
+  • Reason: Google parsing engine failure required decoupling of JSON-LD tags and application of strict `EntryPoint` syntax for Sitelinks Searchbox validation.

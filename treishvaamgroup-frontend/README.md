@@ -22,6 +22,8 @@
  * • Integrated Zero-Trust protocols.
  * • Documented `NEXT_PUBLIC_*` environment variables for GA4, Ads, and AdSense.
  * • Enforced 0ms TBT Architecture via `ThirdPartyScripts.tsx`.
+ * - EDITED (LATEST):
+ * • Added documentation for the decoupled JSON-LD Enterprise Entity Graph.
  */
 
 # Treishvaam Group Frontend (Next.js)
@@ -46,6 +48,7 @@ The application requires the following variables to function securely. Create a 
 ## 2. Architecture Highlights
 
 * **Next.js 15 App Router**: Utilizes React Server Components (RSC) by default for zero-bundle-size SEO content delivery.
+* **Semantic Entity Graph**: Utilizes decoupled `<script type="application/ld+json">` schemas to establish semantic identity logic, Sitelinks EntryPoints, and parent-subsidiary mappings without relying on vulnerable `@graph` arrays.
 * **0ms TBT Analytics Loading**: Google Analytics, Google Ads, and AdSense scripts are strictly loaded via an **Interaction-Based Deferred Strategy** (`components/ThirdPartyScripts.tsx`). This ensures a 100/100 Lighthouse Performance score by preventing third-party code from blocking the main thread during Googlebot crawls.
 * **Tenant-Aware API Client**: All requests made via `src/api/client.ts` automatically inject the `X-Tenant-ID: treishvaam_corporate` header to ensure secure routing at the backend layer.
 * **Enterprise Design System**: Tailwind CSS is customized with Corporate Navy (`corporate-900`) and Heritage Gold (`heritage-500`) palettes, paired with Merriweather (Serif) and Inter (Sans) typography.
@@ -55,7 +58,7 @@ The application requires the following variables to function securely. Create a 
 ```text
 src/ (or root)
 ├── app/                   # Next.js App Router
-│   ├── layout.tsx         # Root layout (Metadata, Providers, Navbar, Footer)
+│   ├── layout.tsx         # Root layout (Metadata, Semantic JSON-LD, Providers, Navbar, Footer)
 │   ├── page.tsx           # Homepage
 │   ├── about/             # About Us section
 │   ├── businesses/        # Businesses & Sectors
@@ -98,6 +101,7 @@ We utilize Edge computing platforms for hosting to ensure global edge distributi
 2.  **Go to Dashboard** -> Settings -> Environment Variables.
 3.  **Add the Production Variables** (e.g., `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`).
 4.  **Redeploy** to apply changes.
+5.  **Important:** Purge the edge cache manually after deployment to ensure Knowledge Graph schemas are parsed cleanly.
 
 ## 6. Troubleshooting
 
