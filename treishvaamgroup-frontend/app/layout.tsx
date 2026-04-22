@@ -35,12 +35,9 @@
  * - EDITED:
  * • Converted JSON-LD to a `@graph` array to inject `WebSite` and `ItemList` (SiteNavigationElement) schemas.
  * • Why: To programmatically instruct Google's crawler to generate structural Sitelinks (Businesses, Careers, Contact) on the Brand SERP.
- * - EDITED:
- * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags.
- * • Why: Google Rich Results parsing engine failed to extract `WebSite` from the deeply nested array. Isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
  * - EDITED (Current Phase):
- * • Wrapped the `WebSite` -> `SearchAction` target in the strictly required Google `EntryPoint` object template.
- * • Why: Google Rich Results strictly demands this specific syntax for the Sitelinks Searchbox to be officially validated.
+ * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags AND wrapped the `WebSite` -> `SearchAction` target in the strictly required Google `EntryPoint` object template.
+ * • Why: Google Rich Results strictly demands the EntryPoint syntax for the Sitelinks Searchbox, and isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
