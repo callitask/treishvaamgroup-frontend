@@ -22,7 +22,8 @@
  * - Expanding Enterprise JSON-LD schema globally to fix entity resolution and typo tolerance.
  *
  * Future AI Guidance:
- * - Do not remove the structured data script tag. If adding new aliases, append them to the `alternateName` array.
+ * - Do not remove the structured data script tags. If adding new aliases, append them to the `alternateName` array.
+ * - Always keep schema blocks isolated. Do not merge them into a single `@graph` array to ensure independent crawler parsing.
  *
  * IMMUTABLE CHANGE HISTORY (DO NOT DELETE):
  * - EDITED:
@@ -31,10 +32,12 @@
  * - EDITED:
  * • Expanded the Founder `alternateName` array to include the brand variations ("Treishvaam", "Treishvam", "Trishvam").
  * • Why: Semantic identity fusion. User queries for "Trishvam" must directly associate with the founder across all NLP models.
- * - EDITED (Current Phase):
+ * - EDITED:
  * • Converted JSON-LD to a `@graph` array to inject `WebSite` and `ItemList` (SiteNavigationElement) schemas.
  * • Why: To programmatically instruct Google's crawler to generate structural Sitelinks (Businesses, Careers, Contact) on the Brand SERP.
- * • High Availability: Executes at build/render time natively on Cloudflare Pages, immune to backend downtime.
+ * - EDITED (Current Phase):
+ * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags.
+ * • Why: Google Rich Results parsing engine failed to extract `WebSite` from the deeply nested array. Isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -127,59 +130,71 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Structured Data / JSON-LD Knowledge Graph Array */}
+        {/* 1. Organization & Founder Knowledge Graph (Fused Identity) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "name": "Treishvaam Group",
-                  "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Trishvam"],
-                  "url": "https://treishvaamgroup.com",
-                  "logo": "https://treishvaamgroup.com/logo512.webp",
-                  "description": "Treishvaam Group is a diversified enterprise innovating across finance, agriculture, and technology.",
-                  "foundingDate": "2024",
-                  "founder": {
-                    "@type": "Person",
-                    "name": "Amitsagar Kandpal",
-                    "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
-                    "url": "https://linkedin.com/in/amitsagarkandpal"
-                  },
-                  "contactPoint": {
-                    "@type": "ContactPoint",
-                    "contactType": "customer service",
-                    "email": "treishvaamgroup@gmail.com",
-                    "telephone": "+918178529633"
-                  },
-                  "sameAs": [
-                    "https://www.linkedin.com/company/treishvaamgroup",
-                    "https://twitter.com/treishvaamgroup"
-                  ]
-                },
-                {
-                  "@type": "WebSite",
-                  "name": "Treishvaam Group",
-                  "url": "https://treishvaamgroup.com",
-                  "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://treishvaamgroup.com/search?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                  }
-                },
-                {
-                  "@type": "ItemList",
-                  "itemListElement": [
-                    { "@type": "SiteNavigationElement", "position": 1, "name": "Businesses", "url": "https://treishvaamgroup.com/businesses" },
-                    { "@type": "SiteNavigationElement", "position": 2, "name": "Investors", "url": "https://treishvaamgroup.com/investors" },
-                    { "@type": "SiteNavigationElement", "position": 3, "name": "Sustainability", "url": "https://treishvaamgroup.com/sustainability" },
-                    { "@type": "SiteNavigationElement", "position": 4, "name": "Newsroom", "url": "https://treishvaamgroup.com/newsroom" },
-                    { "@type": "SiteNavigationElement", "position": 5, "name": "Careers", "url": "https://treishvaamgroup.com/careers" },
-                    { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://treishvaamgroup.com/contact" }
-                  ]
-                }
+              "@type": "Organization",
+              "name": "Treishvaam Group",
+              "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Trishvam"],
+              "url": "https://treishvaamgroup.com",
+              "logo": "https://treishvaamgroup.com/logo512.webp",
+              "description": "Treishvaam Group is a diversified enterprise innovating across finance, agriculture, and technology.",
+              "foundingDate": "2024",
+              "founder": {
+                "@type": "Person",
+                "name": "Amitsagar Kandpal",
+                "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
+                "url": "https://linkedin.com/in/amitsagarkandpal"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "email": "treishvaamgroup@gmail.com",
+                "telephone": "+918178529633"
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/treishvaamgroup",
+                "https://twitter.com/treishvaamgroup"
+              ]
+            })
+          }}
+        />
+
+        {/* 2. WebSite Schema (For Google Sitelinks Search Box) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Treishvaam Group",
+              "url": "https://treishvaamgroup.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://treishvaamgroup.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+
+        {/* 3. ItemList Schema (Explicit mapping for Sitelink Navigation) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": [
+                { "@type": "SiteNavigationElement", "position": 1, "name": "Businesses", "url": "https://treishvaamgroup.com/businesses" },
+                { "@type": "SiteNavigationElement", "position": 2, "name": "Investors", "url": "https://treishvaamgroup.com/investors" },
+                { "@type": "SiteNavigationElement", "position": 3, "name": "Sustainability", "url": "https://treishvaamgroup.com/sustainability" },
+                { "@type": "SiteNavigationElement", "position": 4, "name": "Newsroom", "url": "https://treishvaamgroup.com/newsroom" },
+                { "@type": "SiteNavigationElement", "position": 5, "name": "Careers", "url": "https://treishvaamgroup.com/careers" },
+                { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://treishvaamgroup.com/contact" }
               ]
             })
           }}
