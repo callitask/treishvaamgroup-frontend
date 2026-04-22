@@ -35,9 +35,12 @@
  * - EDITED:
  * • Converted JSON-LD to a `@graph` array to inject `WebSite` and `ItemList` (SiteNavigationElement) schemas.
  * • Why: To programmatically instruct Google's crawler to generate structural Sitelinks (Businesses, Careers, Contact) on the Brand SERP.
- * - EDITED (Current Phase):
+ * - EDITED:
  * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags.
  * • Why: Google Rich Results parsing engine failed to extract `WebSite` from the deeply nested array. Isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
+ * - EDITED (Current Phase):
+ * • Wrapped the `WebSite` -> `SearchAction` target in the strictly required Google `EntryPoint` object template.
+ * • Why: Google Rich Results strictly demands this specific syntax for the Sitelinks Searchbox to be officially validated.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -174,7 +177,10 @@ export default function RootLayout({
               "url": "https://treishvaamgroup.com",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://treishvaamgroup.com/search?q={search_term_string}",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://treishvaamgroup.com/search?q={search_term_string}"
+                },
                 "query-input": "required name=search_term_string"
               }
             })
