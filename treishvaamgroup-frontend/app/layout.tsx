@@ -33,9 +33,6 @@
  * • Expanded the Founder `alternateName` array to include the brand variations ("Treishvaam", "Treishvam", "Trishvam").
  * • Why: Semantic identity fusion. User queries for "Trishvam" must directly associate with the founder across all NLP models.
  * - EDITED:
- * • Converted JSON-LD to a `@graph` array to inject `WebSite` and `ItemList` (SiteNavigationElement) schemas.
- * • Why: To programmatically instruct Google's crawler to generate structural Sitelinks (Businesses, Careers, Contact) on the Brand SERP.
- * - EDITED (Current Phase):
  * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags AND wrapped the `WebSite` -> `SearchAction` target in the strictly required Google `EntryPoint` object template.
  * • Why: Google Rich Results strictly demands the EntryPoint syntax for the Sitelinks Searchbox, and isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
  *
