@@ -107,9 +107,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code', // To be updated
-  },
+  // Verification is environment-driven; never hardcode placeholders
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } } : {}),
 }
 
 export default function RootLayout({
@@ -128,7 +127,10 @@ export default function RootLayout({
         {/* Preconnect to critical domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+        <link rel="alternate" type="text/plain" href="https://treishvaamgroup.com/llms.txt" title="Treishvaam Group LLM Knowledge Graph" />
+        <link rel="alternate" type="text/markdown" href="https://treishvaamgroup.com/ai-feed.md" title="Treishvaam Group AI Semantic Feed" />
+        <link rel="alternate" type="application/ld+json" href="https://treishvaamgroup.com/ontology.json" title="Treishvaam Group Entity Ontology" />
+
         {/* 1. Organization — https://treishvaamgroup.com/#organization */}
         <script
           type="application/ld+json"
@@ -138,16 +140,19 @@ export default function RootLayout({
               "@type": "Organization",
               "@id": "https://treishvaamgroup.com/#organization",
               "name": "Treishvaam Group",
+              "legalName": "Treishvaam Group",
               "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Treishvam", "Trishvam"],
               "url": "https://treishvaamgroup.com",
               "logo": "https://treishvaamgroup.com/logo512.webp",
               "description": "Treishvaam Group is a diversified enterprise conglomerate innovating across finance, agriculture, and technology.",
               "foundingDate": "2024",
+              "address": { "@type": "PostalAddress", "streetAddress": "Electronic City", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560100", "addressCountry": "IN" },
+              "knowsAbout": ["Financial Services", "Market Intelligence", "Algorithmic Wealth Management", "Sustainable Agriculture", "Solar Dehydration Technology", "B2B Nutraceuticals", "Human Capital Marketplace", "Enterprise Technology"],
               "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" },
               "subOrganization": [
-                { "@type": "FinancialService", "@id": "https://treishvaamfinance.com/#organization", "name": "Treishvaam Finance", "url": "https://treishvaamfinance.com" },
-                { "@type": "Organization", "@id": "https://treishvaamagro.com/#organization", "name": "Treishvaam Agro", "url": "https://treishvaamagro.com" },
-                { "@type": "Organization", "@id": "https://thm.treishvaamgroup.com/#organization", "name": "Treishvaam Hiring Marketplace", "url": "https://thm.treishvaamgroup.com" }
+                { "@type": "FinancialService", "@id": "https://treishvaamfinance.com/#organization", "name": "Treishvaam Finance", "url": "https://treishvaamfinance.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } },
+                { "@type": "Organization", "@id": "https://treishvaamagro.com/#organization", "name": "Treishvaam Agro", "url": "https://treishvaamagro.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } },
+                { "@type": "Organization", "@id": "https://thm.treishvaamgroup.com/#organization", "name": "Treishvaam Hiring Marketplace", "url": "https://thm.treishvaamgroup.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } }
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
@@ -157,7 +162,9 @@ export default function RootLayout({
               },
               "sameAs": [
                 "https://www.linkedin.com/company/treishvaamgroup",
-                "https://twitter.com/treishvaamgroup"
+                "https://twitter.com/treishvaamgroup",
+                "https://x.com/treishvaam",
+                "https://www.instagram.com/treishvaam/"
               ]
             })
           }}
@@ -185,6 +192,10 @@ export default function RootLayout({
                 { "@type": "Occupation", "name": "Artist" },
                 { "@type": "Occupation", "name": "Actor" }
               ],
+              "description": "Amitsagar Kandpal (known professionally and artistically as Treishvaam) is an Indian entrepreneur, artist, and actor, and the Founder & Chairman of Treishvaam Group, Treishvaam Finance, Treishvaam Agro, and Treishvaam Hiring Marketplace.",
+              "mainEntityOfPage": "https://treishvaamgroup.com/about",
+              "affiliation": [{ "@id": "https://treishvaamgroup.com/#organization" }, { "@id": "https://treishvaamfinance.com/#organization" }, { "@id": "https://treishvaamagro.com/#organization" }, { "@id": "https://thm.treishvaamgroup.com/#organization" }],
+              "knowsAbout": ["Corporate Strategy", "Financial Markets", "Macroeconomics", "Sustainable Agriculture", "Solar Dehydration", "Enterprise Architecture", "Performing Arts"],
               "image": "https://treishvaamfinance.com/amitsagar-kandpal-photo.png",
               "sameAs": [
                 "https://www.instagram.com/treishvaam/",
@@ -205,8 +216,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
+              "@id": "https://treishvaamgroup.com/#website",
               "name": "Treishvaam Group",
               "url": "https://treishvaamgroup.com",
+              "publisher": { "@id": "https://treishvaamgroup.com/#organization" },
+              "creator": { "@id": "https://treishvaamgroup.com/#treishvaam" },
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
@@ -219,7 +233,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* 3. ItemList Schema (Explicit mapping for Sitelink Navigation) */}
+        {/* 4. ItemList Schema (Explicit mapping for Sitelink Navigation) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -233,6 +247,22 @@ export default function RootLayout({
                 { "@type": "SiteNavigationElement", "position": 4, "name": "Newsroom", "url": "https://treishvaamgroup.com/newsroom" },
                 { "@type": "SiteNavigationElement", "position": 5, "name": "Careers", "url": "https://treishvaamgroup.com/careers" },
                 { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://treishvaamgroup.com/contact" }
+              ]
+            })
+          }}
+        />
+
+        {/* 5. FAQPage — 2026 AEO Answer Engine Optimization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                { "@type": "Question", "name": "Who is the founder and owner of Treishvaam Group?", "acceptedAnswer": { "@type": "Answer", "text": "Amitsagar Kandpal, known professionally as Treishvaam, born 1997-10-05, educated at Hans Raj College, University of Delhi, working as Entrepreneur, Artist, and Actor, and serving as Founder & Chairman." } },
+                { "@type": "Question", "name": "What are the subsidiaries and divisions of Treishvaam Group?", "acceptedAnswer": { "@type": "Answer", "text": "Treishvaam Finance (https://treishvaamfinance.com), Treishvaam Agro (https://treishvaamagro.com), and Treishvaam Hiring Marketplace (https://thm.treishvaamgroup.com)." } },
+                { "@type": "Question", "name": "Where is Treishvaam Group headquartered and how can it be contacted?", "acceptedAnswer": { "@type": "Answer", "text": "Headquartered in Electronic City, Bangalore, Karnataka 560100, India. Contact: treishvaamgroup@gmail.com, +91 8178529633." } }
               ]
             })
           }}

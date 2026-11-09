@@ -1,11 +1,19 @@
 import HeroSection from '@/components/home/HeroSection'
+import FounderMessage from '@/components/home/FounderMessage'
 import Link from 'next/link'
 import { FiArrowRight, FiTrendingUp, FiSun, FiUsers } from 'react-icons/fi'
+
+export const metadata = {
+  title: 'About Treishvaam Group & Founder Amitsagar Kandpal (Treishvaam)',
+  description: 'Enterprise About & Leadership page for Treishvaam Group and Founder Treishvaam (Amitsagar Kandpal).',
+  alternates: { canonical: '/about' },
+}
 
 export default function Home() {
   return (
     <main className="bg-white selection:bg-gold-100">
       <HeroSection />
+      <FounderMessage />
 
       {/* The Strategic Vision */}
       <section className="py-32 relative overflow-hidden">

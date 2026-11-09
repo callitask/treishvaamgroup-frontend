@@ -11,6 +11,15 @@ const nextConfig = {
   headers: async () => {
     return [
       {
+        source: '/',
+        headers: [
+          {
+            key: 'Link',
+            value: '</llms.txt>; rel="llms-txt", </ai-feed.md>; rel="alternate"; type="text/markdown", </ontology.json>; rel="describedby"; type="application/ld+json"'
+          },
+        ],
+      },
+      {
         source: '/:path*',
         headers: [
           {

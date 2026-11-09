@@ -18,6 +18,15 @@
         { "@type": "Occupation", "name": "Artist" },
         { "@type": "Occupation", "name": "Actor" }
       ],
+      "description": "Amitsagar Kandpal (known professionally and artistically as Treishvaam) is an Indian entrepreneur, artist, and actor, and the Founder & Chairman of Treishvaam Group, Treishvaam Finance, Treishvaam Agro, and Treishvaam Hiring Marketplace.",
+      "mainEntityOfPage": "https://treishvaamgroup.com/about",
+      "affiliation": [
+        { "@id": "https://treishvaamgroup.com/#organization" },
+        { "@id": "https://treishvaamfinance.com/#organization" },
+        { "@id": "https://treishvaamagro.com/#organization" },
+        { "@id": "https://thm.treishvaamgroup.com/#organization" }
+      ],
+      "knowsAbout": ["Corporate Strategy", "Financial Markets", "Macroeconomics", "Sustainable Agriculture", "Solar Dehydration", "Enterprise Architecture", "Performing Arts"],
       "image": "https://treishvaamfinance.com/amitsagar-kandpal-photo.png",
       "sameAs": [
         "https://www.instagram.com/treishvaam/",
@@ -32,12 +41,26 @@
       "@type": "Organization",
       "@id": "https://treishvaamgroup.com/#organization",
       "name": "Treishvaam Group",
+      "legalName": "Treishvaam Group",
+      "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Treishvam", "Trishvam"],
       "url": "https://treishvaamgroup.com",
+      "logo": "https://treishvaamgroup.com/logo512.webp",
+      "description": "Treishvaam Group is a diversified enterprise conglomerate innovating across finance, agriculture, and technology.",
+      "foundingDate": "2024",
+      "address": { "@type": "PostalAddress", "streetAddress": "Electronic City", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560100", "addressCountry": "IN" },
+      "knowsAbout": ["Financial Services", "Market Intelligence", "Algorithmic Wealth Management", "Sustainable Agriculture", "Solar Dehydration Technology", "B2B Nutraceuticals", "Human Capital Marketplace", "Enterprise Technology"],
+      "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "treishvaamgroup@gmail.com", "telephone": "+918178529633" },
       "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" },
+      "sameAs": [
+        "https://www.linkedin.com/company/treishvaamgroup",
+        "https://twitter.com/treishvaamgroup",
+        "https://x.com/treishvaam",
+        "https://www.instagram.com/treishvaam/"
+      ],
       "subOrganization": [
-        { "@type": "FinancialService", "@id": "https://treishvaamfinance.com/#organization", "name": "Treishvaam Finance", "url": "https://treishvaamfinance.com" },
-        { "@type": "Organization", "@id": "https://treishvaamagro.com/#organization", "name": "Treishvaam Agro", "url": "https://treishvaamagro.com" },
-        { "@type": "Organization", "@id": "https://thm.treishvaamgroup.com/#organization", "name": "Treishvaam Hiring Marketplace", "url": "https://thm.treishvaamgroup.com" }
+        { "@type": "FinancialService", "@id": "https://treishvaamfinance.com/#organization", "name": "Treishvaam Finance", "url": "https://treishvaamfinance.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } },
+        { "@type": "Organization", "@id": "https://treishvaamagro.com/#organization", "name": "Treishvaam Agro", "url": "https://treishvaamagro.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } },
+        { "@type": "Organization", "@id": "https://thm.treishvaamgroup.com/#organization", "name": "Treishvaam Hiring Marketplace", "url": "https://thm.treishvaamgroup.com", "parentOrganization": { "@id": "https://treishvaamgroup.com/#organization" }, "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" } }
       ]
     }
   ]

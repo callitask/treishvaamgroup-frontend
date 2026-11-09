@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function FounderMessage() {
   
-  // --- SEO DATA — canonical Founder Master Entity (Phase 13.3) ---
+  // --- SEO DATA — canonical Founder Master Entity (Phase 13.6: synced with layout Block 2) ---
+  const portraitSrc = process.env.NEXT_PUBLIC_CHAIRMAN_PORTRAIT_URL || 'https://treishvaamfinance.com/amitsagar-kandpal-photo.png';
   const founderSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -25,7 +26,10 @@ export default function FounderMessage() {
       { "@type": "Occupation", "name": "Artist" },
       { "@type": "Occupation", "name": "Actor" }
     ],
-    "description": "Visionary entrepreneur and architect of the Treishvaam Group ecosystem, focusing on finance, agriculture, and human capital.",
+    "description": "Amitsagar Kandpal (known professionally and artistically as Treishvaam) is an Indian entrepreneur, artist, and actor, and the Founder & Chairman of Treishvaam Group, Treishvaam Finance, Treishvaam Agro, and Treishvaam Hiring Marketplace.",
+    "mainEntityOfPage": "https://treishvaamgroup.com/about",
+    "affiliation": [{ "@id": "https://treishvaamgroup.com/#organization" }, { "@id": "https://treishvaamfinance.com/#organization" }, { "@id": "https://treishvaamagro.com/#organization" }, { "@id": "https://thm.treishvaamgroup.com/#organization" }],
+    "knowsAbout": ["Corporate Strategy", "Financial Markets", "Macroeconomics", "Sustainable Agriculture", "Solar Dehydration", "Enterprise Architecture", "Performing Arts"],
     "image": "https://treishvaamfinance.com/amitsagar-kandpal-photo.png",
     "sameAs": [
       "https://www.instagram.com/treishvaam/",
@@ -88,7 +92,7 @@ export default function FounderMessage() {
               {/* Image Container */}
               <div className="absolute inset-0 bg-gray-200 rounded-sm overflow-hidden shadow-2xl shadow-gray-200 border border-gray-100">
                 <Image 
-                  src="/amitsagar-kandpal-photo.png" 
+                  src={portraitSrc} 
                   alt="Amitsagar Kandpal - Founder of Treishvaam Group"
                   fill
                   className="object-cover object-top transition-transform duration-[1.5s] group-hover:scale-105"
