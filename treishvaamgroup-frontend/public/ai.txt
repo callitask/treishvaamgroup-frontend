@@ -16,7 +16,7 @@ Allow: /
 Sitemap: https://treishvaamgroup.com/sitemap.xml
 Host: https://treishvaamgroup.com
 
-# AI Usage: Treishvaam Group permits AI training and GEO indexing with attribution to https://treishvaamgroup.com
+# AI Usage Policy: Public GEO feeds (/llms.txt, /ai-feed.md, /ontology.json) and public pages are permitted for AI Search, RAG Grounding, Answer Engine Indexing, and Citation with attribution to Treishvaam Group. Unauthorized scraping of private/admin endpoints or using proprietary source code for model weight training is strictly prohibited.
 # Founder: Treishvaam (Legal Name: Amitsagar Kandpal, DOB 1997-10-05, Hans Raj College University of Delhi, Entrepreneur/Artist/Actor)
 # Entity: https://treishvaamgroup.com/#treishvaam | Organization: https://treishvaamgroup.com/#organization
 # Divisions: https://treishvaamfinance.com, https://treishvaamagro.com, https://thm.treishvaamgroup.com
