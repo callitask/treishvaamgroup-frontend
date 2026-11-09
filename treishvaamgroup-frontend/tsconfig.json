@@ -27,6 +27,10 @@
  * • Added `"ignoreDeprecations": "6.0"` to compilerOptions.
  * • Why the edit was required: Next.js 15 enforces zero TS errors, and TS 5.5+ flags `baseUrl` as deprecated.
  * • What behavior must remain unchanged: Path aliases and existing compiler options.
+ * - EDITED (Phase 13.4 - Fix-forward for TS 5.9.3 build):
+ * • Changed `"ignoreDeprecations": "6.0"` to `"5.0"` for local TS 5.9.3 compatibility (5.9 rejects '6.0').
+ * • Why: Parent `npm run build` failed with `Invalid value for '--ignoreDeprecations'`; 5.0 preserves baseUrl deprecation suppression exactly as intended.
+ * • What must remain unchanged: Path alias `@/*` -> `./*`, strictness, and TS behavior (no baseUrl removal).
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -49,7 +53,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "paths": {
       "@/*": ["./*"]
     },

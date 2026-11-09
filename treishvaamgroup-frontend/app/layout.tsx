@@ -35,6 +35,8 @@
  * - EDITED:
  * • Decoupled the JSON-LD `@graph` array into three isolated `<script>` tags AND wrapped the `WebSite` -> `SearchAction` target in the strictly required Google `EntryPoint` object template.
  * • Why: Google Rich Results strictly demands the EntryPoint syntax for the Sitelinks Searchbox, and isolation guarantees 100% independent evaluation of Organization, Searchbox, and Sitelinks schemas.
+ * - EDITED (Phase 13.3 — Isolated 4-Block Knowledge Graph):
+ * • Split Block 1 into Organization (`#organization` with `subOrganization` Finance/Agro/THM) + Person (`#treishvaam` master: Treishvaam / Amitsagar Kandpal, 1997-10-05, Hans Raj College, Entrepreneur/Artist/Actor, image, full sameAs). Kept isolation (4 separate scripts), never merged @graph.
  *
  * - DO-NOT-DELETE RULE:
  * This IMMUTABLE CHANGE HISTORY section must never be deleted,
@@ -127,25 +129,26 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* 1. Organization & Founder Knowledge Graph (Fused Identity) */}
+        {/* 1. Organization — https://treishvaamgroup.com/#organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": "https://treishvaamgroup.com/#organization",
               "name": "Treishvaam Group",
-              "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Trishvam"],
+              "alternateName": ["Treishvam Group", "Treshvam Group", "Trishvam Group", "Treishvaam Enterprise", "Treishvaam", "Treishvam", "Trishvam"],
               "url": "https://treishvaamgroup.com",
               "logo": "https://treishvaamgroup.com/logo512.webp",
-              "description": "Treishvaam Group is a diversified enterprise innovating across finance, agriculture, and technology.",
+              "description": "Treishvaam Group is a diversified enterprise conglomerate innovating across finance, agriculture, and technology.",
               "foundingDate": "2024",
-              "founder": {
-                "@type": "Person",
-                "name": "Amitsagar Kandpal",
-                "alternateName": ["Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
-                "url": "https://linkedin.com/in/amitsagarkandpal"
-              },
+              "founder": { "@id": "https://treishvaamgroup.com/#treishvaam" },
+              "subOrganization": [
+                { "@type": "FinancialService", "@id": "https://treishvaamfinance.com/#organization", "name": "Treishvaam Finance", "url": "https://treishvaamfinance.com" },
+                { "@type": "Organization", "@id": "https://treishvaamagro.com/#organization", "name": "Treishvaam Agro", "url": "https://treishvaamagro.com" },
+                { "@type": "Organization", "@id": "https://thm.treishvaamgroup.com/#organization", "name": "Treishvaam Hiring Marketplace", "url": "https://thm.treishvaamgroup.com" }
+              ],
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
@@ -160,7 +163,42 @@ export default function RootLayout({
           }}
         />
 
-        {/* 2. WebSite Schema (For Google Sitelinks Search Box) */}
+        {/* 2. Person — Founder Master Entity https://treishvaamgroup.com/#treishvaam */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": "https://treishvaamgroup.com/#treishvaam",
+              "name": "Treishvaam",
+              "legalName": "Amitsagar Kandpal",
+              "alternateName": ["Amitsagar Kandpal", "Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
+              "birthDate": "1997-10-05",
+              "gender": "Male",
+              "nationality": { "@type": "Country", "name": "India" },
+              "jobTitle": "Founder & Chairman",
+              "worksFor": { "@id": "https://treishvaamgroup.com/#organization" },
+              "alumniOf": { "@type": "CollegeOrUniversity", "name": "Hans Raj College, University of Delhi", "sameAs": "https://en.wikipedia.org/wiki/Hansraj_College" },
+              "hasOccupation": [
+                { "@type": "Occupation", "name": "Entrepreneur" },
+                { "@type": "Occupation", "name": "Artist" },
+                { "@type": "Occupation", "name": "Actor" }
+              ],
+              "image": "https://treishvaamfinance.com/amitsagar-kandpal-photo.png",
+              "sameAs": [
+                "https://www.instagram.com/treishvaam/",
+                "https://x.com/treishvaam",
+                "https://www.snapchat.com/@treishvaam",
+                "https://www.linkedin.com/in/amitsagarkandpal",
+                "https://treishvaamgroup.com/about",
+                "https://treishvaamfinance.com/about"
+              ]
+            })
+          }}
+        />
+
+        {/* 3. WebSite Schema (For Google Sitelinks Search Box) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -78,7 +78,7 @@ const Navbar = () => {
             
             {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
             <a href="https://treishvaamfinance.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Finance</a>
-            <a href="https://tagro.treishvaamgroup.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Agro</a>
+            <a href="https://treishvaamagro.com" className="text-gray-600 hover:text-blue-700 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Agro</a>
             
             <Link href="/sustainability" className="text-gray-600 hover:text-blue-700 transition-colors font-medium">Sustainability</Link>
             <Link href="/contact" className="px-5 py-2.5 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors font-medium">Contact Us</Link>
@@ -106,7 +106,7 @@ const Navbar = () => {
             
             {/* SEO CRITICAL: Absolute cross-domain links for PageRank distribution */}
             <a href="https://treishvaamfinance.com" className="block px-3 py-3 text-base font-medium text-blue-700 hover:bg-blue-50 rounded-md">Treishvaam Finance ↗</a>
-            <a href="https://tagro.treishvaamgroup.com" className="block px-3 py-3 text-base font-medium text-green-700 hover:bg-green-50 rounded-md">Treishvaam Agro ↗</a>
+            <a href="https://treishvaamagro.com" className="block px-3 py-3 text-base font-medium text-green-700 hover:bg-green-50 rounded-md">Treishvaam Agro ↗</a>
             
             <Link href="/sustainability" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Sustainability</Link>
             <Link href="/contact" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 rounded-md">Contact Us</Link>

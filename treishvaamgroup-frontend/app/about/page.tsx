@@ -31,7 +31,7 @@ export default function Home() {
               title="Treishvaam Finance"
               desc="Digital-first wealth management and strategic capital solutions."
               status="LIVE"
-              link="https://treishfin.treishvaamgroup.com"
+              link="https://treishvaamfinance.com"
             />
 
             {/* 2. Agro */}
@@ -40,7 +40,7 @@ export default function Home() {
               title="Treishvaam Agro"
               desc="Solar-dried, zero-waste nutritional powders for the global market."
               status="MANUFACTURING"
-              link="/businesses"
+              link="https://treishvaamagro.com"
             />
 
             {/* 3. THM (Hire Marketplace) */}

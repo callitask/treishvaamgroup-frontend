@@ -4,7 +4,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   images: {
-    domains: ['treishfin.treishvaamgroup.com', 'treishvaamgroup.com', 'images.unsplash.com'],
+    domains: ['treishvaamfinance.com', 'treishvaamagro.com', 'treishvaamgroup.com', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
     unoptimized: true, // Required for Cloudflare Pages standard hosting
   },

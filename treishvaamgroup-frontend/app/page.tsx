@@ -361,7 +361,7 @@ export default function Home() {
               subtitle="Wealth & Capital"
               desc="Next-generation digital banking and algorithmic investment strategies."
               image="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2070" 
-              link="https://treishfin.treishvaamgroup.com"
+              link="https://treishvaamfinance.com"
               icon={<FiTrendingUp />}
             />
             <EnterpriseCard 
@@ -369,7 +369,7 @@ export default function Home() {
               subtitle="Sustainable Nutrition"
               desc="Revolutionizing the food supply chain with solar-dried technology."
               image="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070" 
-              link="/businesses"
+              link="https://treishvaamagro.com"
               icon={<FiSun />}
             />
             <EnterpriseCard 

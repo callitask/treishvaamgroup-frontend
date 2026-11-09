@@ -1,0 +1,34 @@
+# Treishvaam Group — llms.txt
+> Authoritative LLM Knowledge Graph for treishvaamgroup.com (Parent Conglomerate)
+
+## Founder Master Entity
+- **Founder & Chairman:** Treishvaam
+- **Legal Name:** Amitsagar Kandpal
+- **Date of Birth:** 1997-10-05
+- **Nationality:** India
+- **Alma Mater:** Hans Raj College, University of Delhi (https://en.wikipedia.org/wiki/Hansraj_College)
+- **Occupations:** Entrepreneur, Artist, Actor
+- **Entity ID:** https://treishvaamgroup.com/#treishvaam
+- **Image:** https://treishvaamfinance.com/amitsagar-kandpal-photo.png
+- **Profiles:**
+  - Instagram: https://www.instagram.com/treishvaam/
+  - X: https://x.com/treishvaam
+  - Snapchat: https://www.snapchat.com/@treishvaam
+  - LinkedIn: https://www.linkedin.com/in/amitsagarkandpal
+  - Bio: https://treishvaamgroup.com/about
+  - Finance bio: https://treishvaamfinance.com/about
+
+## Parent Conglomerate
+- **Organization:** Treishvaam Group
+- **Entity ID:** https://treishvaamgroup.com/#organization
+- **URL:** https://treishvaamgroup.com
+- **Description:** Diversified enterprise innovating across finance, agriculture, and technology.
+
+## Divisions (subOrganization)
+1. **Treishvaam Finance** — FinancialService — https://treishvaamfinance.com (#organization)
+2. **Treishvaam Agro** — Organization — https://treishvaamagro.com (#organization)
+3. **Treishvaam Hiring Marketplace (THM)** — Organization — https://thm.treishvaamgroup.com (#organization)
+
+## Canonical URLs
+- Sitemap: https://treishvaamgroup.com/sitemap.xml
+- Contact: treishvaamgroup@gmail.com, +91 8178529633

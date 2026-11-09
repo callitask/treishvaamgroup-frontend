@@ -6,21 +6,34 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function FounderMessage() {
   
-  // --- SEO DATA ---
+  // --- SEO DATA — canonical Founder Master Entity (Phase 13.3) ---
   const founderSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Amitsagar Kandpal",
+    "@id": "https://treishvaamgroup.com/#treishvaam",
+    "name": "Treishvaam",
+    "legalName": "Amitsagar Kandpal",
+    "alternateName": ["Amitsagar Kandpal", "Amit Kandpal", "Amit Sagar Kandpal", "Amitsagar", "Treishvaam", "Treishvam", "Trishvam"],
+    "birthDate": "1997-10-05",
+    "gender": "Male",
+    "nationality": { "@type": "Country", "name": "India" },
     "jobTitle": "Founder & Chairman",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Treishvaam Group",
-      "url": "https://treishvaamgroup.com"
-    },
+    "worksFor": { "@id": "https://treishvaamgroup.com/#organization" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Hans Raj College, University of Delhi", "sameAs": "https://en.wikipedia.org/wiki/Hansraj_College" },
+    "hasOccupation": [
+      { "@type": "Occupation", "name": "Entrepreneur" },
+      { "@type": "Occupation", "name": "Artist" },
+      { "@type": "Occupation", "name": "Actor" }
+    ],
     "description": "Visionary entrepreneur and architect of the Treishvaam Group ecosystem, focusing on finance, agriculture, and human capital.",
-    "image": "https://treishvaamgroup.com/amitsagar-kandpal-photo.png",
+    "image": "https://treishvaamfinance.com/amitsagar-kandpal-photo.png",
     "sameAs": [
-      "https://www.linkedin.com/in/amitsagarkandpal"
+      "https://www.instagram.com/treishvaam/",
+      "https://x.com/treishvaam",
+      "https://www.snapchat.com/@treishvaam",
+      "https://www.linkedin.com/in/amitsagarkandpal",
+      "https://treishvaamgroup.com/about",
+      "https://treishvaamfinance.com/about"
     ]
   }
 

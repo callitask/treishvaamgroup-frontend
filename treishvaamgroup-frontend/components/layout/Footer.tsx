@@ -71,8 +71,8 @@ const Footer = () => {
             <ul className="space-y-4">
               {/* SEO CRITICAL: Absolute cross-domain links */}
               <li><a href="https://treishvaamfinance.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Finance <span className="text-xs opacity-50">↗</span></a></li>
-              <li><a href="https://tagro.treishvaamgroup.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Agro <span className="text-xs opacity-50">↗</span></a></li>
-              <li><span className="text-gray-600 cursor-not-allowed">Treishvaam Hiring (Coming Soon)</span></li>
+              <li><a href="https://treishvaamagro.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Agro <span className="text-xs opacity-50">↗</span></a></li>
+              <li><a href="https://thm.treishvaamgroup.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2" target="_blank" rel="noopener noreferrer">Treishvaam Hiring Marketplace <span className="text-xs opacity-50">↗</span></a></li>
             </ul>
           </div>
 
